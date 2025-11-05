@@ -1,9 +1,7 @@
 
 package com.mycompany.asiproyecto;
 
-import java.awt.BorderLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import java.util.List;
 
 /**
  *
@@ -19,15 +17,22 @@ public class VistaOportunidad extends javax.swing.JFrame {
     public VistaOportunidad() {
         super("Oportunidades");
         
-        /*try {
-            ImageIcon fondoIcon = new ImageIcon(getClass().getResource("100x300azul.png"));
-            JLabel background = new JLabel(fondoIcon);
-            setContentPane(background);
-            getContentPane().setLayout(new BorderLayout());
-        } catch (Exception e) {
-            System.out.println("Image no encontrada: " + e.getMessage());
-        }*/
         initComponents();
+        ConvocatoriaDAO dao = new ConvocatoriaDAO();
+        List<Convocatoria> misConvocatorias = dao.obtenerTodasLasConvocatorias();
+
+        //CAMBIAR TODO ESTO
+        /*for (Convocatoria c : misConvocatorias) {
+            
+        }*/
+        jLabel2.setText(misConvocatorias.get(0).getTitulo());
+        jLabel3.setText(misConvocatorias.get(1).getTitulo());
+        //CAMBIAR TODO ESTO
+        
+        UsuarioDAO udao = new UsuarioDAO();
+        Usuario u = udao.obtenerUsuario("andres.guerrero@unmsm.edu.pe");
+        jLabel4.setText(u.getNombre());
+        
     }
 
     /**
@@ -39,17 +44,86 @@ public class VistaOportunidad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        msg1label = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        panelConvocatoria = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 255));
+
+        msg1label.setBackground(new java.awt.Color(0, 0, 0));
+        msg1label.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        msg1label.setForeground(new java.awt.Color(255, 255, 255));
+        msg1label.setText("CONVOCATORIAS ENCONTRADAS");
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel1.setText("HOLA");
+
+        jButton1.setText("Registrar oportunidad");
+
+        panelConvocatoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelConvocatoria.setForeground(new java.awt.Color(255, 51, 0));
+
+        javax.swing.GroupLayout panelConvocatoriaLayout = new javax.swing.GroupLayout(panelConvocatoria);
+        panelConvocatoria.setLayout(panelConvocatoriaLayout);
+        panelConvocatoriaLayout.setHorizontalGroup(
+            panelConvocatoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConvocatoriaLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addGroup(panelConvocatoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addContainerGap(548, Short.MAX_VALUE))
+        );
+        panelConvocatoriaLayout.setVerticalGroup(
+            panelConvocatoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConvocatoriaLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel2)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel3)
+                .addContainerGap(516, Short.MAX_VALUE))
+        );
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(msg1label)
+                    .addComponent(panelConvocatoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(msg1label)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(47, 47, 47)
+                        .addComponent(jButton1))
+                    .addComponent(panelConvocatoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,5 +155,12 @@ public class VistaOportunidad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel msg1label;
+    private javax.swing.JPanel panelConvocatoria;
     // End of variables declaration//GEN-END:variables
 }
