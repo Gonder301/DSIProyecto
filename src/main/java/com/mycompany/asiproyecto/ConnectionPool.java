@@ -1,4 +1,3 @@
-
 package com.mycompany.asiproyecto;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -7,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ConnectionPool {
-private static HikariConfig config = new HikariConfig();
+    private static HikariConfig config = new HikariConfig();
     
     private static HikariDataSource ds;
 
