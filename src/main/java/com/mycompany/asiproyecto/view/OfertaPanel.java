@@ -68,7 +68,7 @@ public class OfertaPanel extends JPanel {
         // Botón para más detalles
         JButton btnVerMas = new JButton("Ver más detalles");
         btnVerMas.setAlignmentX(Component.LEFT_ALIGNMENT);
-        //btnVerMas.addActionListener(e -> mostrarDetalles());
+        btnVerMas.addActionListener(e -> mostrarDetalles());
 
         // Espaciadores
         Component verticalStrut = Box.createVerticalStrut(5);
@@ -90,5 +90,51 @@ public class OfertaPanel extends JPanel {
         contentPanel.add(btnVerMas);
 
         add(contentPanel, BorderLayout.CENTER);
+    }
+    
+    private void mostrarDetalles() {
+        // Crear un diálogo para mostrar todos los detalles
+        JDialog detallesDialog = new JDialog();
+        detallesDialog.setTitle("Detalles de la Oferta - " + oferta.getNombreEmpresa());
+        detallesDialog.setModal(true);
+        detallesDialog.setSize(500, 400);
+        detallesDialog.setLocationRelativeTo(this);
+
+        JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setMargin(new Insets(10, 10, 10, 10));
+
+        // Construir el texto con todos los detalles
+        StringBuilder detalles = new StringBuilder();
+        detalles.append("EMPRESA: ").append(oferta.getNombreEmpresa()).append("\n\n");
+        detalles.append("PUESTO: ").append(oferta.getPuestoPractica()).append("\n\n");
+        detalles.append("DESCRIPCIÓN:\n").append(oferta.getDescriptionPerfil()).append("\n\n");
+        detalles.append("REQUISITOS:\n").append(oferta.getRequisitos()).append("\n\n");
+        detalles.append("HABILIDADES:\n").append(oferta.getHabilidadesCompetencias()).append("\n\n");
+        detalles.append("ÁREA: ").append(oferta.getArea()).append("\n");
+        detalles.append("DISTRITO: ").append(oferta.getDistrito()).append("\n");
+        detalles.append("MODALIDAD: ").append(oferta.getModalidad()).append("\n\n");
+        
+        if (oferta.getFechaInicio() != null) {
+            detalles.append("FECHA INICIO: ").append(oferta.getFechaInicio().format(dateFormatter)).append("\n");
+        }
+        if (oferta.getFechaFin() != null) {
+            detalles.append("FECHA FIN: ").append(oferta.getFechaFin().format(dateFormatter)).append("\n");
+        }
+        if (oferta.getFechaLimiteRecepcion() != null) {
+            detalles.append("FECHA LÍMITE: ").append(oferta.getFechaLimiteRecepcion().format(dateFormatter)).append("\n");
+        }
+        
+        detalles.append("\nBENEFICIOS:\n").append(oferta.getBeneficios()).append("\n\n");
+        detalles.append("CONSULTAS:\n").append(oferta.getConsultas());
+
+        textArea.setText(detalles.toString());
+
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        detallesDialog.add(scrollPane);
+
+        detallesDialog.setVisible(true);
     }
 }
