@@ -6,6 +6,8 @@ import com.mycompany.asiproyecto.Placeholder;
 import com.mycompany.asiproyecto.service.LoginService;
 import com.mycompany.asiproyecto.model.*;
 import com.mycompany.asiproyecto.view.InicioAlumno;
+import com.mycompany.asiproyecto.view.InicioEmpleado;
+import com.mycompany.asiproyecto.view.InicioProfesor;
 import java.util.Arrays;
 import javax.swing.JFrame;
 
@@ -37,20 +39,48 @@ public class LoginController {
             case 0:
                 //Se crea una instancia de LoginService para comunicarse con la base de datos.
                 LoginService ls = new LoginService();
+                
                 String tipoUsuario = vista.getTipoUsuario();
+                //Poner dentro de una funcion.
                 if (tipoUsuario.equals("Alumno")) {
                     Alumno a = ls.consultarAlumnoDB(correo, new String(contrasena));
                     if (a != null) {
-                        InicioAlumno inicioAlumno = new InicioAlumno();
+                        InicioAlumno inicioAlumno = new InicioAlumno(a);
                         inicioAlumno.setVisible(true);
+                        JFrame framePadre = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(vista);
+                        framePadre.dispose();
                         vista.dispose();
+                    }
+                    else {
+                        vista.cambiarMsgError("Alumno no está registrado.");
                     }
                 } else if (tipoUsuario.equals("Profesor")) {
                     Profesor p = ls.consultarProfesorDB(correo, new String(contrasena));
+                    if (p != null) {
+                        InicioProfesor inicioProfesor = new InicioProfesor(p);
+                        inicioProfesor.setVisible(true);
+                        JFrame framePadre = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(vista);
+                        framePadre.dispose();
+                        vista.dispose();
+                    }
+                    else {
+                        vista.cambiarMsgError("Profesor no está registrado.");
+                    }
                 } else if (tipoUsuario.equals("Empresa")) {
                     EmpleadoEmpresa e = ls.consultarEmpleadoEmpresaDB(correo, new String(contrasena));
+                    if (e != null) {
+                        InicioEmpleado inicioEmpleado = new InicioEmpleado(e);
+                        inicioEmpleado.setVisible(true);
+                        JFrame framePadre = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(vista);
+                        framePadre.dispose();
+                        vista.dispose();
+                    }
+                    else {
+                        vista.cambiarMsgError("Empelado no está registrado.");
+                    }
                 }
                 break;
+                
             case 1:
                 vista.cambiarCorreoBorder(Colores.textFieldBorderErr, 2);
                 vista.cambiarMsgError("Por favor ingrese un correo válido.");

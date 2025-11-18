@@ -22,9 +22,8 @@ public class Index extends javax.swing.JFrame {
         JLabel bgLabel = new JLabel(bg);
         bgLabel.setBounds(0, 65, 1153, 600);
         getContentPane().add(bgLabel);
-        setLocationRelativeTo(null);
         
-        //getContentPane().setBackground(Color.BLUE);
+        setLocationRelativeTo(null);
     }
 
     /**

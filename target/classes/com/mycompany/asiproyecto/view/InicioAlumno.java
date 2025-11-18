@@ -10,17 +10,17 @@ public class InicioAlumno extends javax.swing.JFrame {
      * Creates new form InicioAlumno
      */
     
-    Alumno alumno = null;
+    private Alumno alumno = null;
     
     public InicioAlumno() {
         initComponents();
     }
     
     public InicioAlumno(Alumno a) {
-        alumno = a;
-        System.out.println(a.getNombresAlumno());
         initComponents();
+        alumno = a;
         jLabel2.setText(a.getNombresAlumno());
+        setLocationRelativeTo(null);
     }
     
     /**
@@ -39,7 +39,7 @@ public class InicioAlumno extends javax.swing.JFrame {
 
         jLabel1.setText("PANTALLA DE INICIO DE ALUMNO");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("nombre");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
