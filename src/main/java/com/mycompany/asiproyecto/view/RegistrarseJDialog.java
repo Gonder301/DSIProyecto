@@ -7,10 +7,6 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.AttributeSet;
 
-/**
- *
- * @author abrah
- */
 public class RegistrarseJDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarseJDialog.class.getName());
