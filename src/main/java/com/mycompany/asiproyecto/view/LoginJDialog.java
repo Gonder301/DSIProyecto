@@ -14,12 +14,16 @@ public class LoginJDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginJDialog.class.getName());
 
+    //Controlador
+    private LoginController lc;
+    
     /**
      * Creates new form LoginJDialog
      */
     public LoginJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        LoginController lc = new LoginController();
         
         ImageIcon icon = new ImageIcon(getClass().getResource("../assets/icon.png"));
         JLabel iconLabel = new JLabel(icon);
@@ -29,17 +33,17 @@ public class LoginJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }
     
-    public void cambiarCorreoBorder(Color c, int t) {
+    public void setCorreoBorder(Color c, int t) {
         LineBorder lineBorder = new LineBorder(c, t);
         correoTextField.setBorder(lineBorder);
     }
 
-    public void cambiarContraBorder(Color c, int t) {
+    public void setContraBorder(Color c, int t) {
         LineBorder lineBorder = new LineBorder(c, t);
         contraPasswordField.setBorder(lineBorder);
     }
     
-    public void cambiarMsgError(String e) {
+    public void setMsgError(String e) {
         msgError.setText(e);
     }
     
@@ -233,7 +237,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void correoTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_correoTextFieldFocusGained
-        cambiarCorreoBorder(Colores.textFieldBorderDef, 1);
+        setCorreoBorder(Colores.textFieldBorderDef, 1);
         if (correoTextField.getText().equals(Placeholder.correo)) {
         correoTextField.setText("");
         correoTextField.setForeground(Color.BLACK);
@@ -248,7 +252,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_correoTextFieldFocusLost
 
     private void contraPasswordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contraPasswordFieldFocusGained
-        cambiarContraBorder(Colores.textFieldBorderDef, 1);
+        setContraBorder(Colores.textFieldBorderDef, 1);
         if (Arrays.equals(contraPasswordField.getPassword(), Placeholder.contra.toCharArray())) {
         contraPasswordField.setText("");
         contraPasswordField.setForeground(Color.BLACK);
@@ -272,7 +276,6 @@ public class LoginJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void iniciarSesionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionButtonActionPerformed
-        LoginController lc = new LoginController();
         lc.procesarValidacion(this);
     }//GEN-LAST:event_iniciarSesionButtonActionPerformed
 

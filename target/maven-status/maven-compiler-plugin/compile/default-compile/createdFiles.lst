@@ -13,11 +13,13 @@ com\mycompany\asiproyecto\view\RegistrarseJDialog$4.class
 com\mycompany\asiproyecto\view\LoginJDialog$5.class
 com\mycompany\asiproyecto\view\LoginJDialog$2.class
 com\mycompany\asiproyecto\model\Profesor.class
+com\mycompany\asiproyecto\controller\RegistrarseController.class
 com\mycompany\asiproyecto\dao\ProfesorDAO.class
 com\mycompany\asiproyecto\view\Index$5.class
 com\mycompany\asiproyecto\view\RegistrarseJDialog$2.class
 com\mycompany\asiproyecto\model\EmpleadoEmpresa.class
 com\mycompany\asiproyecto\view\RegistrarseJDialog$5.class
+com\mycompany\asiproyecto\view\RegistrarseJDialog$7$1.class
 com\mycompany\asiproyecto\view\OportunidadesJDialog$1.class
 com\mycompany\asiproyecto\model\Oferta.class
 com\mycompany\asiproyecto\view\LoginJDialog$1.class
@@ -31,7 +33,7 @@ com\mycompany\asiproyecto\view\LoginJDialog$4.class
 com\mycompany\asiproyecto\view\Index$2.class
 com\mycompany\asiproyecto\view\OfertaPanel.class
 com\mycompany\asiproyecto\service\LoginService.class
-com\mycompany\asiproyecto\view\RegistrarseJDialog$5$1.class
+com\mycompany\asiproyecto\view\RegistrarseJDialog$7.class
 com\mycompany\asiproyecto\Colores.class
 com\mycompany\asiproyecto\view\LoginJDialog$3.class
 com\mycompany\asiproyecto\view\Index$3.class
@@ -39,4 +41,5 @@ com\mycompany\asiproyecto\controller\LoginController.class
 com\mycompany\asiproyecto\view\InicioEmpleado.class
 com\mycompany\asiproyecto\view\InicioProfesor.class
 com\mycompany\asiproyecto\view\RegistrarseJDialog$3.class
+com\mycompany\asiproyecto\view\RegistrarseJDialog$6.class
 com\mycompany\asiproyecto\view\Index$6.class

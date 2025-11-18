@@ -49,4 +49,53 @@ public class AlumnoDAO {
         
         return a;
     }
+    
+    public boolean registrarAlumno(Alumno a, String contrasena) {
+        boolean registrado = false;
+    
+        String sql = "INSERT INTO Alumno (nombresAlumno, apellidosAlumno, dni, genero, " +
+                    "fechaNacimiento, codigo, carrera, curso, docenteACargo, " +
+                    "correoElectronico, contrasena) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConnectionPool.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        // Asignar valores desde el objeto Alumno
+            pstmt.setString(1, a.getNombresAlumno());
+            pstmt.setString(2, a.getApellidosAlumno());
+            pstmt.setString(3, a.getDni());
+            pstmt.setString(4, a.getGenero());
+
+        // Conversión segura de LocalDate a java.sql.Date
+            if (a.getFechaNacimiento() != null) {
+                pstmt.setDate(5, java.sql.Date.valueOf(a.getFechaNacimiento()));
+            } else {
+                pstmt.setNull(5, java.sql.Types.DATE);
+            }
+
+            pstmt.setString(6, a.getCodigo());
+            pstmt.setString(7, a.getCarrera());
+            pstmt.setString(8, a.getCurso());
+            pstmt.setString(9, a.getDocenteACargo());
+            pstmt.setString(10, a.getCorreoElectronico());
+        
+        // Asignar la contraseña (parámetro extra)
+            pstmt.setString(11, contrasena);
+
+        // Ejecutar la inserción
+            int filasAfectadas = pstmt.executeUpdate();
+        
+        // Si se insertó al menos una fila, retornamos true
+            if (filasAfectadas > 0) {
+                registrado = true;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al registrar alumno: " + e.getMessage());
+            e.printStackTrace();
+        }
+    
+    return registrado;
+    }
 }

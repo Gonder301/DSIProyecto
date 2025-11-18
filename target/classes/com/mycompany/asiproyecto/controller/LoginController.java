@@ -52,7 +52,7 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.cambiarMsgError("Alumno no está registrado.");
+                        vista.setMsgError("Alumno no está registrado.");
                     }
                 } else if (tipoUsuario.equals("Profesor")) {
                     Profesor p = ls.consultarProfesorDB(correo, new String(contrasena));
@@ -64,7 +64,7 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.cambiarMsgError("Profesor no está registrado.");
+                        vista.setMsgError("Profesor no está registrado.");
                     }
                 } else if (tipoUsuario.equals("Empresa")) {
                     EmpleadoEmpresa e = ls.consultarEmpleadoEmpresaDB(correo, new String(contrasena));
@@ -76,23 +76,23 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.cambiarMsgError("Empelado no está registrado.");
+                        vista.setMsgError("Empelado no está registrado.");
                     }
                 }
                 break;
                 
             case 1:
-                vista.cambiarCorreoBorder(Colores.textFieldBorderErr, 2);
-                vista.cambiarMsgError("Por favor ingrese un correo válido.");
+                vista.setCorreoBorder(Colores.textFieldBorderErr, 2);
+                vista.setMsgError("Por favor ingrese un correo válido.");
                 break;
             case 2:
-                vista.cambiarContraBorder(Colores.textFieldBorderErr, 2);
-                vista.cambiarMsgError("Por favor ingrese su contraseña.");
+                vista.setContraBorder(Colores.textFieldBorderErr, 2);
+                vista.setMsgError("Por favor ingrese su contraseña.");
                 break;
             case 3:
-                vista.cambiarCorreoBorder(Colores.textFieldBorderErr, 2);
-                vista.cambiarContraBorder(Colores.textFieldBorderErr, 2);
-                vista.cambiarMsgError("Debe ingresar correo y contraseña.");
+                vista.setCorreoBorder(Colores.textFieldBorderErr, 2);
+                vista.setContraBorder(Colores.textFieldBorderErr, 2);
+                vista.setMsgError("Debe ingresar correo y contraseña.");
                 break;
         }
     }
