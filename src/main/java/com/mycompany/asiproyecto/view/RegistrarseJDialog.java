@@ -1,10 +1,14 @@
 package com.mycompany.asiproyecto.view;
 
-import com.mycompany.asiproyecto.Placeholder;
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.DatePickerSettings;
+
+//import com.mycompany.asiproyecto.Placeholder;
 import com.mycompany.asiproyecto.Colores;
 import com.mycompany.asiproyecto.model.*;
 import com.mycompany.asiproyecto.controller.RegistrarseController;
 import java.awt.CardLayout;
+import javax.swing.JTextField;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
@@ -16,6 +20,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
     
     //Controlador
     RegistrarseController rc;
+    DatePicker datePickerA;
     /**
      * Creates new form registrarseDialog
      */
@@ -24,17 +29,48 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
         initComponents();
         rc = new RegistrarseController();
         
-        // Restricción de 8 dígitos para DNI
-        AbstractDocument document = (AbstractDocument) dniTextFieldA.getDocument();
-        document.setDocumentFilter(new DocumentFilter() {
-            private int maxLenght = 8;
+        DatePickerSettings dateSettings = new DatePickerSettings();
+        dateSettings.setFormatForDatesCommonEra("dd-MM-yyyy");
+        
+        datePickerA = new DatePicker(dateSettings);
+        
+        javax.swing.GroupLayout layout = (javax.swing.GroupLayout) estudiantePanel.getLayout();
+        layout.replace(datePickerPlaceholderA, datePickerA);
+        estudiantePanel.revalidate();
+        estudiantePanel.repaint();
+    
+        
+        restriccionNumeros(dniTextFieldA, 8);
+        restriccionLetras(nombresTextFieldA);
+        restriccionLetras(apellidoTextFieldA);
+        restriccionLetras(docenteCargoTextFieldA);
+        restriccionNumeros(codigoTextFieldA, 8);
+    }
+
+    private void restriccionLetras(JTextField tf) {
+        AbstractDocument adoc = (AbstractDocument) tf.getDocument();
+        adoc.setDocumentFilter(new DocumentFilter() {
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text != null && !text.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+                    return;
+                }
+                
+                super.replace(fb, offset, length, text, attrs);
+            }
+        });
+    }
+    
+    private void restriccionNumeros(JTextField tf, int maxLenght) {
+        AbstractDocument adoc = (AbstractDocument) tf.getDocument();
+        adoc.setDocumentFilter(new DocumentFilter() {
             
             @Override
             public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
                 if (text != null && !text.matches("\\d+")) {
                     return;
                 }
-                
                 int currentLength = fb.getDocument().getLength();
                 int overLimit = (currentLength + text.length()) - length - maxLenght;
                 
@@ -64,7 +100,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
         a.setApellidosAlumno(apellidoTextFieldA.getText());
         a.setDni(dniTextFieldA.getText());
         a.setGenero((String)generoComboBoxA.getSelectedItem());
-        //setFechaNacimiento
+        a.setFechaNacimiento(datePickerA.getDate());
         a.setCodigo(codigoTextFieldA.getText());
         a.setCarrera((String)carreraComboBoxA.getSelectedItem());
         a.setCurso(cursoTextFieldA.getText());
@@ -103,7 +139,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
         generoComboBoxA = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        botonEstudianteSiguente = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         carreraComboBoxA = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
@@ -111,10 +147,10 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
         jLabel22 = new javax.swing.JLabel();
         docenteCargoTextFieldA = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        fechaNacTextFieldA = new javax.swing.JTextField();
         contraPasswordFieldA = new javax.swing.JPasswordField();
         contra2PasswordFieldA = new javax.swing.JPasswordField();
         msgRegistrarse = new javax.swing.JLabel();
+        datePickerPlaceholderA = new javax.swing.JTextField();
         empresaPanel = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -219,13 +255,13 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
 
         jLabel10.setText("Confirmar contraseña");
 
-        jButton4.setBackground(new java.awt.Color(0, 51, 255));
-        jButton4.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Siguente");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botonEstudianteSiguente.setBackground(new java.awt.Color(0, 51, 255));
+        botonEstudianteSiguente.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        botonEstudianteSiguente.setForeground(new java.awt.Color(255, 255, 255));
+        botonEstudianteSiguente.setText("Siguente");
+        botonEstudianteSiguente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botonEstudianteSiguenteActionPerformed(evt);
             }
         });
 
@@ -235,15 +271,9 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
 
         jLabel21.setText("Curso");
 
-        cursoTextFieldA.setText("jTextField4");
-
         jLabel22.setText("Docente a cargo");
 
-        docenteCargoTextFieldA.setText("jTextField16");
-
         jLabel31.setText("Fecha de nacimiento");
-
-        fechaNacTextFieldA.setText("jTextField22");
 
         contraPasswordFieldA.setText("jPasswordField3");
 
@@ -268,8 +298,17 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(correoTextFieldA))
                             .addGroup(estudiantePanelLayout.createSequentialGroup()
-                                .addGroup(estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(estudiantePanelLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(botonEstudianteSiguente, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(contraPasswordFieldA)
+                            .addComponent(contra2PasswordFieldA)
+                            .addGroup(estudiantePanelLayout.createSequentialGroup()
+                                .addGroup(estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, estudiantePanelLayout.createSequentialGroup()
+                                        .addComponent(dniTextFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(datePickerPlaceholderA))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, estudiantePanelLayout.createSequentialGroup()
                                         .addGroup(estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(carreraComboBoxA, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel19)
@@ -282,7 +321,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
                                                     .addComponent(jLabel21)
                                                     .addComponent(jLabel8))
                                                 .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(estudiantePanelLayout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, estudiantePanelLayout.createSequentialGroup()
                                         .addGroup(estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
                                             .addComponent(nombresTextFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -296,16 +335,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
                                     .addComponent(jLabel7)
                                     .addComponent(generoComboBoxA, 0, 130, Short.MAX_VALUE)
                                     .addComponent(jLabel22)
-                                    .addComponent(docenteCargoTextFieldA)))
-                            .addGroup(estudiantePanelLayout.createSequentialGroup()
-                                .addComponent(dniTextFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(fechaNacTextFieldA))
-                            .addGroup(estudiantePanelLayout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(contraPasswordFieldA)
-                            .addComponent(contra2PasswordFieldA)))
+                                    .addComponent(docenteCargoTextFieldA)))))
                     .addGroup(estudiantePanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(msgRegistrarse)))
@@ -335,7 +365,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dniTextFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fechaNacTextFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datePickerPlaceholderA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
@@ -363,7 +393,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contra2PasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jButton4)
+                .addComponent(botonEstudianteSiguente)
                 .addGap(30, 30, 30)
                 .addComponent(msgRegistrarse)
                 .addContainerGap(49, Short.MAX_VALUE))
@@ -689,9 +719,9 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void botonEstudianteSiguenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEstudianteSiguenteActionPerformed
         rc.procesarRegistroAlumno(this);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_botonEstudianteSiguenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -734,6 +764,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField apellidoTextFieldA;
     private javax.swing.JButton botonEmpresa;
     private javax.swing.JButton botonEstudiante;
+    private javax.swing.JButton botonEstudianteSiguente;
     private javax.swing.JButton botonProfesor;
     private javax.swing.JPanel cardHolderPanel;
     private javax.swing.JComboBox<String> carreraComboBoxA;
@@ -742,14 +773,13 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
     private javax.swing.JPasswordField contraPasswordFieldA;
     private javax.swing.JTextField correoTextFieldA;
     private javax.swing.JTextField cursoTextFieldA;
+    private javax.swing.JTextField datePickerPlaceholderA;
     private javax.swing.JTextField dniTextFieldA;
     private javax.swing.JTextField docenteCargoTextFieldA;
     private javax.swing.JPanel empresaPanel;
     private javax.swing.JPanel estudiantePanel;
-    private javax.swing.JTextField fechaNacTextFieldA;
     private javax.swing.JComboBox<String> generoComboBoxA;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;

@@ -52,7 +52,7 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.setMsgError("Alumno no está registrado.");
+                        vista.setMsgError("Credenciales incorrectas.");
                     }
                 } else if (tipoUsuario.equals("Profesor")) {
                     Profesor p = ls.consultarProfesorDB(correo, new String(contrasena));
@@ -64,7 +64,7 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.setMsgError("Profesor no está registrado.");
+                        vista.setMsgError("Credenciales incorrectas.");
                     }
                 } else if (tipoUsuario.equals("Empresa")) {
                     EmpleadoEmpresa e = ls.consultarEmpleadoEmpresaDB(correo, new String(contrasena));
@@ -76,7 +76,7 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.setMsgError("Empelado no está registrado.");
+                        vista.setMsgError("Credenciales incorrectas.");
                     }
                 }
                 break;

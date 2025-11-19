@@ -23,7 +23,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     public LoginJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        LoginController lc = new LoginController();
+        lc = new LoginController();
         
         ImageIcon icon = new ImageIcon(getClass().getResource("../assets/icon.png"));
         JLabel iconLabel = new JLabel(icon);

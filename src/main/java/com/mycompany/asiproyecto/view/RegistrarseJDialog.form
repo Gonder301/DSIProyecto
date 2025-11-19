@@ -162,8 +162,19 @@
                                       <Component id="correoTextFieldA" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Component id="botonEstudianteSiguente" min="-2" pref="459" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="contraPasswordFieldA" max="32767" attributes="0"/>
+                                  <Component id="contra2PasswordFieldA" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="dniTextFieldA" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="datePickerPlaceholderA" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="carreraComboBoxA" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                                                   <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -202,17 +213,6 @@
                                           <Component id="docenteCargoTextFieldA" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="dniTextFieldA" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="fechaNacTextFieldA" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Component id="jButton4" min="-2" pref="459" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="contraPasswordFieldA" max="32767" attributes="0"/>
-                                  <Component id="contra2PasswordFieldA" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -254,7 +254,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="dniTextFieldA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fechaNacTextFieldA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="datePickerPlaceholderA" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -287,7 +287,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="contra2PasswordFieldA" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonEstudianteSiguente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="msgRegistrarse" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="49" max="32767" attributes="0"/>
@@ -375,7 +375,7 @@
                 <Property name="text" type="java.lang.String" value="Confirmar contrase&#xf1;a"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="botonEstudianteSiguente">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -389,7 +389,7 @@
                 <Property name="text" type="java.lang.String" value="Siguente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEstudianteSiguenteActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
@@ -417,9 +417,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="cursoTextFieldA">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField4"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
@@ -427,18 +424,10 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="docenteCargoTextFieldA">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField16"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel31">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Fecha de nacimiento"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="fechaNacTextFieldA">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField22"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="contraPasswordFieldA">
@@ -457,6 +446,8 @@
                   <Font name="SansSerif" size="14" style="0"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="datePickerPlaceholderA">
             </Component>
           </SubComponents>
         </Container>

@@ -18,4 +18,6 @@ public class RegistrarseController {
             vista.setMsgRegistrarse("El alumno se registró con éxito.");
         }
     }
+    
+    
 }
