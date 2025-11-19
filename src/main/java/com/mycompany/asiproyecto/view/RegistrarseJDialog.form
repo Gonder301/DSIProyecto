@@ -322,6 +322,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="codigoTextFieldA">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
@@ -329,6 +332,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="dniTextFieldA">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -341,6 +347,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="correoTextFieldA">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JComboBox" name="generoComboBoxA">
               <Properties>
@@ -408,6 +417,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="cursoTextFieldA">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
@@ -415,6 +427,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="docenteCargoTextFieldA">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel31">
               <Properties>
@@ -461,39 +476,47 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="395" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPasswordField2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPasswordField1" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jTextField20" alignment="0" pref="225" max="32767" attributes="0"/>
-                                      <Component id="jTextField19" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField13" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jTextField19" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField13" max="32767" attributes="0"/>
+                                  <Component id="jTextField20" alignment="0" pref="241" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField18" min="-2" pref="225" max="-2" attributes="0"/>
-                                  <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField21" min="-2" pref="225" max="-2" attributes="0"/>
+                                  <Component id="jTextField18" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextField21" alignment="0" pref="245" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPasswordField1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPasswordField2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton1" max="32767" attributes="0"/>
+                          <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -550,9 +573,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField13">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField13"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel25">
               <Properties>
@@ -560,9 +580,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField18">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField18"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel26">
               <Properties>
@@ -570,9 +587,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField19">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField19"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel27">
               <Properties>
@@ -580,9 +594,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField20">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField20"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel28">
               <Properties>
@@ -590,9 +601,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField21">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField21"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel29">
               <Properties>
@@ -600,9 +608,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="jPasswordField1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel30">
               <Properties>
@@ -610,9 +615,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="jPasswordField2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jPasswordField2"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
@@ -651,28 +653,27 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField14" max="32767" attributes="0"/>
+                          <Component id="msgRegistrarseP" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton5" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField15" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jComboBox3" alignment="0" pref="232" max="32767" attributes="0"/>
+                                      <Component id="carreraComboBoxP" alignment="0" pref="232" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jTextField10" alignment="0" pref="232" max="32767" attributes="0"/>
+                                              <Component id="dniTextFieldP" alignment="0" pref="232" max="32767" attributes="0"/>
                                               <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField8" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="nombresTextFieldP" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                       <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -680,15 +681,17 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField9" max="32767" attributes="0"/>
-                                  <Component id="jTextField11" pref="232" max="32767" attributes="0"/>
+                                  <Component id="apellidoTextFieldP" max="32767" attributes="0"/>
+                                  <Component id="correoTextFieldP" pref="232" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextField12" min="-2" pref="94" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="jTextField17" min="-2" pref="232" max="-2" attributes="0"/>
+                              <Component id="codigoCursoTextFieldP" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cursoTextFieldP" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="contraPasswordFieldP2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="contraPasswordFieldP1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="48" max="32767" attributes="0"/>
                   </Group>
@@ -703,8 +706,8 @@
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombresTextFieldP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="apellidoTextFieldP" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -718,13 +721,13 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dniTextFieldP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="correoTextFieldP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
+                      <Component id="carreraComboBoxP" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -732,20 +735,22 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField17" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="codigoCursoTextFieldP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cursoTextFieldP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField14" min="-2" max="-2" attributes="0"/>
+                      <Component id="contraPasswordFieldP1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField15" min="-2" max="-2" attributes="0"/>
+                      <Component id="contraPasswordFieldP2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Component id="jButton5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="76" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="msgRegistrarseP" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="58" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -756,69 +761,59 @@
                 <Property name="text" type="java.lang.String" value="Nombres"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField8">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField8"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="nombresTextFieldP">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Apellidos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField9"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="apellidoTextFieldP">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DNI"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField10">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField10"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="dniTextFieldP">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Correo Institucional"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField11">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField11"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="correoTextFieldP">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo de Curso"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField12">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField12"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="codigoCursoTextFieldP">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField14">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField14"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Confirmar Contrase&#xf1;a"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField15">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField15"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton5">
@@ -834,13 +829,16 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Siguiente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel23">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Carrera"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox3">
+            <Component class="javax.swing.JComboBox" name="carreraComboBoxP">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
@@ -859,10 +857,25 @@
                 <Property name="text" type="java.lang.String" value="Curso"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField17">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField17"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="cursoTextFieldP">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="msgRegistrarseP">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="contraPasswordFieldP2">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="contraPasswordFieldP1">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
