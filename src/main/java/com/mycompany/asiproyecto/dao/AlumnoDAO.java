@@ -73,13 +73,13 @@ public class AlumnoDAO {
                 pstmt.setNull(5, java.sql.Types.DATE);
             }
 
+            String hashContrasena = PasswordService.hash(contrasena);
+            
             pstmt.setString(6, a.getCodigo());
             pstmt.setString(7, a.getCarrera());
             pstmt.setString(8, a.getCurso());
             pstmt.setString(9, a.getDocenteACargo());
             pstmt.setString(10, a.getCorreoElectronico());
-        
-            String hashContrasena = PasswordService.hash(contrasena);
             pstmt.setString(11, hashContrasena);
 
             int filasAfectadas = pstmt.executeUpdate();
@@ -92,7 +92,6 @@ public class AlumnoDAO {
             System.err.println("Error al registrar alumno: " + e.getMessage());
             e.printStackTrace();
         }
-    
     return registrado;
     }
 }

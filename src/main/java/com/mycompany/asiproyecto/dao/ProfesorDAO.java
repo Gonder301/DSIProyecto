@@ -53,6 +53,8 @@ public class ProfesorDAO {
         try (Connection conn = ConnectionPool.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            String hashContrasena = PasswordService.hash(contrasena);
+            
             pstmt.setString(1, p.getNombresProfesor());
             pstmt.setString(2, p.getApellidosProfesor());
             pstmt.setString(3, p.getDni());
@@ -60,12 +62,10 @@ public class ProfesorDAO {
             pstmt.setString(5, p.getNombreCurso());
             pstmt.setString(6, p.getCarrera());
             pstmt.setString(7, p.getCorreoInstitucional());
-
-            String hashContrasena = PasswordService.hash(contrasena);
             pstmt.setString(8, hashContrasena);
 
             int filasAfectadas = pstmt.executeUpdate();
-
+            
             if (filasAfectadas > 0) {
                 registrado = true;
             }
@@ -74,7 +74,6 @@ public class ProfesorDAO {
             System.err.println("Error al registrar profesor: " + e.getMessage());
             e.printStackTrace();
         }
-
         return registrado;
     }
 }

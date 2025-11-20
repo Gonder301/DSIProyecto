@@ -37,13 +37,9 @@ public class LoginController {
         //3 <- Correo y Contraseña ...
         switch (estado) {
             case 0:
-                //Se crea una instancia de LoginService para comunicarse con la base de datos.
-                LoginService ls = new LoginService();
-                
                 String tipoUsuario = vista.getTipoUsuario();
-                //Poner dentro de una funcion.
                 if (tipoUsuario.equals("Alumno")) {
-                    Alumno a = ls.consultarAlumnoDB(correo, contrasena);
+                    Alumno a = LoginService.consultarAlumnoDB(correo, contrasena);
                     if (a != null) {
                         InicioAlumno inicioAlumno = new InicioAlumno(a);
                         inicioAlumno.setVisible(true);
@@ -55,7 +51,7 @@ public class LoginController {
                         vista.setMsgError("Credenciales incorrectas.");
                     }
                 } else if (tipoUsuario.equals("Profesor")) {
-                    Profesor p = ls.consultarProfesorDB(correo, contrasena);
+                    Profesor p = LoginService.consultarProfesorDB(correo, contrasena);
                     if (p != null) {
                         InicioProfesor inicioProfesor = new InicioProfesor(p);
                         inicioProfesor.setVisible(true);
@@ -67,7 +63,7 @@ public class LoginController {
                         vista.setMsgError("Credenciales incorrectas.");
                     }
                 } else if (tipoUsuario.equals("Empresa")) {
-                    EmpleadoEmpresa e = ls.consultarEmpleadoEmpresaDB(correo, new String(contrasena));
+                    EmpleadoEmpresa e = LoginService.consultarEmpleadoEmpresaDB(correo, contrasena);
                     if (e != null) {
                         InicioEmpleado inicioEmpleado = new InicioEmpleado(e);
                         inicioEmpleado.setVisible(true);

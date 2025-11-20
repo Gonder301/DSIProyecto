@@ -2,6 +2,7 @@ package com.mycompany.asiproyecto.dao;
 
 import com.mycompany.asiproyecto.db.ConnectionPool;
 import com.mycompany.asiproyecto.model.EmpleadoEmpresa;
+import com.mycompany.asiproyecto.service.PasswordService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 
 public class EmpleadoEmpresaDAO {
 
-    public EmpleadoEmpresa obtenerEmpleadoEmpresa(String correoCorporativo, String contrasena) {
+    public EmpleadoEmpresa obtenerEmpleadoEmpresa(String correoCorporativo, char[] contrasena) {
         EmpleadoEmpresa emp = null;
         
         // Se asume que la tabla se llama EmpleadoEmpresa y tiene columna contrasena
@@ -18,13 +19,13 @@ public class EmpleadoEmpresaDAO {
         try (Connection conn = ConnectionPool.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            String hashContrasena = PasswordService.hash(contrasena);
             pstmt.setString(1, correoCorporativo);
-            pstmt.setString(2, contrasena);
+            pstmt.setString(2, hashContrasena);
             
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     emp = new EmpleadoEmpresa();
-                    // Mapeo exacto según los atributos de tu clase EmpleadoEmpresa.java
                     emp.setIdEmpleado(rs.getInt("idEmpleado"));
                     emp.setNombreCompleto(rs.getString("nombreCompleto"));
                     emp.setNombreEmpresa(rs.getString("nombreEmpresa"));
@@ -39,5 +40,36 @@ public class EmpleadoEmpresaDAO {
         }
         
         return emp;
+    }
+    
+    public boolean registrarEmpleadoEmpresa(EmpleadoEmpresa empleado, char[] contrasena) {
+        boolean registrado = false;
+        
+        String sql = "INSERT INTO EmpleadoEmpresa (nombreCompleto, nombreEmpresa,"
+                + " correoCorporativo, telefono, ruc, contrasena) VALUES (?, ?, ?, ?, ?, ?)";
+    
+        try (Connection conn = ConnectionPool.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+            String hashContrasena = PasswordService.hash(contrasena);
+        
+            pstmt.setString(1, empleado.getNombreCompleto());
+            pstmt.setString(2, empleado.getNombreEmpresa());
+            pstmt.setString(3, empleado.getCorreoCorporativo());
+            pstmt.setString(4, empleado.getTelefono());
+            pstmt.setString(5, empleado.getRuc());
+            pstmt.setString(6, hashContrasena);
+        
+            int filasAfectadas = pstmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                registrado = true;
+            }
+        
+        } catch (SQLException e) {
+            System.err.println("Error al registrar EmpleadoEmpresa: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return registrado;
     }
 }

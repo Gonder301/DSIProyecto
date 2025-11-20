@@ -4,21 +4,21 @@ import com.mycompany.asiproyecto.model.*;
 import com.mycompany.asiproyecto.dao.*;
 
 public class LoginService {
-    public Alumno consultarAlumnoDB(String correoElectronico, char[] contrasena) {
+    static public Alumno consultarAlumnoDB(String correoElectronico, char[] contrasena) {
         AlumnoDAO adao = new AlumnoDAO();
         Alumno a = adao.obtenerAlumno(correoElectronico, contrasena);
         return a;
     }
     
-    public Profesor consultarProfesorDB(String correoElectronico, char[] contrasena) {
+    static public Profesor consultarProfesorDB(String correoElectronico, char[] contrasena) {
         ProfesorDAO pdao = new ProfesorDAO();
         Profesor p = pdao.obtenerProfesor(correoElectronico, contrasena);
         return p;
     }
     
-    public EmpleadoEmpresa consultarEmpleadoEmpresaDB(String correoElectronico, String contrasena) {
+    static public EmpleadoEmpresa consultarEmpleadoEmpresaDB(String correoCorporativo, char[] contrasena) {
         EmpleadoEmpresaDAO edao = new EmpleadoEmpresaDAO();
-        EmpleadoEmpresa e = edao.obtenerEmpleadoEmpresa(correoElectronico, contrasena);
+        EmpleadoEmpresa e = edao.obtenerEmpleadoEmpresa(correoCorporativo, contrasena);
         return e;
     }
 }
