@@ -684,25 +684,25 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
     private void botonEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEstudianteActionPerformed
         CardLayout cl = (CardLayout) cardHolderPanel.getLayout();
         cl.show(cardHolderPanel, "estudianteCard");
-        botonEstudiante.setBackground(Colores.botonSelect);
-        botonProfesor.setBackground(Colores.botonDefault);
-        botonEmpresa.setBackground(Colores.botonDefault);
+        botonEstudiante.setBackground(Colores.BUTTON_ORANGE);
+        botonProfesor.setBackground(Colores.BUTTON_GRAY);
+        botonEmpresa.setBackground(Colores.BUTTON_GRAY);
     }//GEN-LAST:event_botonEstudianteActionPerformed
 
     private void botonProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProfesorActionPerformed
         CardLayout cl = (CardLayout) cardHolderPanel.getLayout();
         cl.show(cardHolderPanel, "profesorCard");
-        botonEstudiante.setBackground(Colores.botonDefault);
-        botonProfesor.setBackground(Colores.botonSelect);
-        botonEmpresa.setBackground(Colores.botonDefault);
+        botonEstudiante.setBackground(Colores.BUTTON_GRAY);
+        botonProfesor.setBackground(Colores.BUTTON_ORANGE);
+        botonEmpresa.setBackground(Colores.BUTTON_GRAY);
     }//GEN-LAST:event_botonProfesorActionPerformed
 
     private void botonEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpresaActionPerformed
         CardLayout cl = (CardLayout) cardHolderPanel.getLayout();
         cl.show(cardHolderPanel, "empresaCard");
-        botonEstudiante.setBackground(Colores.botonDefault);
-        botonProfesor.setBackground(Colores.botonDefault);
-        botonEmpresa.setBackground(Colores.botonSelect);
+        botonEstudiante.setBackground(Colores.BUTTON_GRAY);
+        botonProfesor.setBackground(Colores.BUTTON_GRAY);
+        botonEmpresa.setBackground(Colores.BUTTON_ORANGE);
     }//GEN-LAST:event_botonEmpresaActionPerformed
 
     private void botonEmpresaSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpresaSiguienteActionPerformed

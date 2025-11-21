@@ -1,16 +1,13 @@
 package com.mycompany.asiproyecto.view;
 
+import com.mycompany.asiproyecto.Colores;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import java.awt.Color;
 
 public class Index extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Index.class.getName());
-
-    //Variables
-    Color iniciarSesionButtonColorMouseEntered = new Color(255,204, 0);
-    Color iniciarSesionButtonColorMouseExited = new Color(242,242, 242);
     
     /**
      * Creates new form Index
@@ -505,11 +502,11 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_iniciarSesionButtonActionPerformed
 
     private void iniciarSesionButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iniciarSesionButtonMouseEntered
-        iniciarSesionButton.setBackground(iniciarSesionButtonColorMouseEntered);
+        iniciarSesionButton.setBackground(Colores.BUTTON_ORANGE);
     }//GEN-LAST:event_iniciarSesionButtonMouseEntered
 
     private void iniciarSesionButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iniciarSesionButtonMouseExited
-        iniciarSesionButton.setBackground(iniciarSesionButtonColorMouseExited);
+        iniciarSesionButton.setBackground(Colores.BUTTON_WHITE);
     }//GEN-LAST:event_iniciarSesionButtonMouseExited
 
     /**

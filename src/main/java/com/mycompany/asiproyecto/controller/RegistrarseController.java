@@ -22,8 +22,8 @@ public class RegistrarseController {
     
     private int camposVaciosFormAlumno(RegistrarseJDialog vista) {
         int camposVacios = 0;
-        LineBorder lineBorderErr = new LineBorder(Colores.textFieldBorderErr, 2);
-        LineBorder lineBorderDef = new LineBorder(Colores.botonDefault, 1);
+        LineBorder lineBorderErr = new LineBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
+        LineBorder lineBorderDef = new LineBorder(Colores.TEXTFIELD_BORDER_DEF, 1);
         
         if (vista.nombresTextFieldA.getText().isEmpty()) {
             vista.nombresTextFieldA.setBorder(lineBorderErr);
@@ -125,8 +125,8 @@ public class RegistrarseController {
     
     private int camposVaciosFormProfesor(RegistrarseJDialog vista) {
         int camposVacios = 0;
-        LineBorder lineBorderErr = new LineBorder(Colores.textFieldBorderErr, 2);
-        LineBorder lineBorderDef = new LineBorder(Colores.botonDefault, 1);
+        LineBorder lineBorderErr = new LineBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
+        LineBorder lineBorderDef = new LineBorder(Colores.TEXTFIELD_BORDER_DEF, 1);
         
         if (vista.nombresTextFieldP.getText().isEmpty()) {
             vista.nombresTextFieldP.setBorder(lineBorderErr);
@@ -197,8 +197,8 @@ public class RegistrarseController {
     
     private int camposVaciosFormEmpresa(RegistrarseJDialog vista) {
         int camposVacios = 0;
-        LineBorder lineBorderErr = new LineBorder(Colores.textFieldBorderErr, 2);
-        LineBorder lineBorderDef = new LineBorder(Colores.botonDefault, 1);
+        LineBorder lineBorderErr = new LineBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
+        LineBorder lineBorderDef = new LineBorder(Colores.TEXTFIELD_BORDER_DEF, 1);
         
         if (vista.nombreEmpresaTextFieldE.getText().isEmpty()) {
             vista.nombreEmpresaTextFieldE.setBorder(lineBorderErr);

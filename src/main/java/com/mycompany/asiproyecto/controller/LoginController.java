@@ -78,16 +78,16 @@ public class LoginController {
                 break;
                 
             case 1:
-                vista.setCorreoBorder(Colores.textFieldBorderErr, 2);
+                vista.setCorreoBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
                 vista.setMsgError("Por favor ingrese un correo válido.");
                 break;
             case 2:
-                vista.setContraBorder(Colores.textFieldBorderErr, 2);
+                vista.setContraBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
                 vista.setMsgError("Por favor ingrese su contraseña.");
                 break;
             case 3:
-                vista.setCorreoBorder(Colores.textFieldBorderErr, 2);
-                vista.setContraBorder(Colores.textFieldBorderErr, 2);
+                vista.setCorreoBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
+                vista.setContraBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
                 vista.setMsgError("Debe ingresar correo y contraseña.");
                 break;
         }

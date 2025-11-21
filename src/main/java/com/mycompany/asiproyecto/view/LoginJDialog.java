@@ -242,7 +242,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void correoTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_correoTextFieldFocusGained
-        setCorreoBorder(Colores.textFieldBorderDef, 1);
+        setCorreoBorder(Colores.TEXTFIELD_BORDER_DEF, 1);
         if (correoTextField.getText().equals(Placeholder.correo)) {
         correoTextField.setText("");
         correoTextField.setForeground(Color.BLACK);
@@ -257,7 +257,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_correoTextFieldFocusLost
 
     private void contraPasswordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contraPasswordFieldFocusGained
-        setContraBorder(Colores.textFieldBorderDef, 1);
+        setContraBorder(Colores.TEXTFIELD_BORDER_DEF, 1);
         if (Arrays.equals(contraPasswordField.getPassword(), Placeholder.contra.toCharArray())) {
         contraPasswordField.setText("");
         contraPasswordField.setForeground(Color.BLACK);
