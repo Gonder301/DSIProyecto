@@ -3,9 +3,7 @@ package com.mycompany.asiproyecto.view;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 
-import com.mycompany.asiproyecto.Colores;
 import com.mycompany.asiproyecto.controller.RegistrarseController;
-import java.awt.CardLayout;
 import java.time.LocalDate;
 import javax.swing.JTextField;
 import javax.swing.text.DocumentFilter;
@@ -643,27 +641,15 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEstudianteActionPerformed
-        CardLayout cl = (CardLayout) cardHolderPanel.getLayout();
-        cl.show(cardHolderPanel, "estudianteCard");
-        botonEstudiante.setBackground(Colores.BUTTON_ORANGE);
-        botonProfesor.setBackground(Colores.BUTTON_GRAY);
-        botonEmpresa.setBackground(Colores.BUTTON_GRAY);
+        rc.cambiarTipoUsuarioCard("estudianteCard", this);
     }//GEN-LAST:event_botonEstudianteActionPerformed
 
     private void botonProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProfesorActionPerformed
-        CardLayout cl = (CardLayout) cardHolderPanel.getLayout();
-        cl.show(cardHolderPanel, "profesorCard");
-        botonEstudiante.setBackground(Colores.BUTTON_GRAY);
-        botonProfesor.setBackground(Colores.BUTTON_ORANGE);
-        botonEmpresa.setBackground(Colores.BUTTON_GRAY);
+        rc.cambiarTipoUsuarioCard("profesorCard", this);
     }//GEN-LAST:event_botonProfesorActionPerformed
 
     private void botonEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpresaActionPerformed
-        CardLayout cl = (CardLayout) cardHolderPanel.getLayout();
-        cl.show(cardHolderPanel, "empresaCard");
-        botonEstudiante.setBackground(Colores.BUTTON_GRAY);
-        botonProfesor.setBackground(Colores.BUTTON_GRAY);
-        botonEmpresa.setBackground(Colores.BUTTON_ORANGE);
+        rc.cambiarTipoUsuarioCard("empresaCard", this);
     }//GEN-LAST:event_botonEmpresaActionPerformed
 
     private void botonEmpresaSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpresaSiguienteActionPerformed
@@ -718,13 +704,13 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField apellidoTextFieldA;
     public javax.swing.JTextField apellidoTextFieldP;
-    private javax.swing.JButton botonEmpresa;
+    public javax.swing.JButton botonEmpresa;
     private javax.swing.JButton botonEmpresaSiguiente;
-    private javax.swing.JButton botonEstudiante;
+    public javax.swing.JButton botonEstudiante;
     private javax.swing.JButton botonEstudianteSiguente;
-    private javax.swing.JButton botonProfesor;
+    public javax.swing.JButton botonProfesor;
     private javax.swing.JButton botonProfesorSiguiente;
-    private javax.swing.JPanel cardHolderPanel;
+    public javax.swing.JPanel cardHolderPanel;
     public javax.swing.JComboBox<String> carreraComboBoxA;
     public javax.swing.JComboBox<String> carreraComboBoxP;
     public javax.swing.JTextField codigoCursoTextFieldP;

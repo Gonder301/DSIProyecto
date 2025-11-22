@@ -1,5 +1,7 @@
 package com.mycompany.asiproyecto.view;
 
+import com.mycompany.asiproyecto.controller.InicioEmpleadoController;
+
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.mycompany.asiproyecto.model.EmpleadoEmpresa;
@@ -9,9 +11,9 @@ public class InicioEmpleado extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InicioEmpleado.class.getName());
 
-    /**
-     * Creates new form InicioEmpleado
-     */
+    
+    //Controlador
+    private InicioEmpleadoController iec;
     
     private EmpleadoEmpresa empleadoEmpresa;
     
@@ -21,6 +23,7 @@ public class InicioEmpleado extends javax.swing.JFrame {
     //Solo se llama en testeo
     public InicioEmpleado() {
         initComponents();
+        iec = new InicioEmpleadoController();
         empleadoEmpresa = new EmpleadoEmpresa();
         empleadoEmpresa.setNombreCompleto("Juan Ruiz");
         nombreLabel.setText(empleadoEmpresa.getNombreCompleto());
@@ -30,6 +33,7 @@ public class InicioEmpleado extends javax.swing.JFrame {
 
     public InicioEmpleado(EmpleadoEmpresa e) {
         initComponents();
+        iec = new InicioEmpleadoController();
         empleadoEmpresa = e;
         nombreLabel.setText(empleadoEmpresa.getNombreCompleto());
         agregarDatePickersPublicarOFerta();
@@ -105,14 +109,16 @@ public class InicioEmpleado extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea5 = new javax.swing.JTextArea();
         jButton5 = new javax.swing.JButton();
+        misOfertasPanel = new javax.swing.JPanel();
+        historialPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         nombreLabel = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botonHistorial = new javax.swing.JButton();
+        botonMisOfertas = new javax.swing.JButton();
+        botonPublicar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -482,6 +488,32 @@ public class InicioEmpleado extends javax.swing.JFrame {
 
         cardHolderPanel.add(publicarPanel, "publicarCard");
 
+        javax.swing.GroupLayout misOfertasPanelLayout = new javax.swing.GroupLayout(misOfertasPanel);
+        misOfertasPanel.setLayout(misOfertasPanelLayout);
+        misOfertasPanelLayout.setHorizontalGroup(
+            misOfertasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 721, Short.MAX_VALUE)
+        );
+        misOfertasPanelLayout.setVerticalGroup(
+            misOfertasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 572, Short.MAX_VALUE)
+        );
+
+        cardHolderPanel.add(misOfertasPanel, "misOfertasCard");
+
+        javax.swing.GroupLayout historialPanelLayout = new javax.swing.GroupLayout(historialPanel);
+        historialPanel.setLayout(historialPanelLayout);
+        historialPanelLayout.setHorizontalGroup(
+            historialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 721, Short.MAX_VALUE)
+        );
+        historialPanelLayout.setVerticalGroup(
+            historialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 572, Short.MAX_VALUE)
+        );
+
+        cardHolderPanel.add(historialPanel, "historialCard");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -535,25 +567,45 @@ public class InicioEmpleado extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setBackground(new java.awt.Color(0, 51, 255));
-        jButton3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Historial de postulaciones");
+        botonHistorial.setBackground(new java.awt.Color(0, 51, 255));
+        botonHistorial.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        botonHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        botonHistorial.setText("Historial de postulaciones");
+        botonHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonHistorialActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 255));
-        jButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Mis ofertas de prácticas");
+        botonMisOfertas.setBackground(new java.awt.Color(0, 51, 255));
+        botonMisOfertas.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        botonMisOfertas.setForeground(new java.awt.Color(255, 255, 255));
+        botonMisOfertas.setText("Mis ofertas de prácticas");
+        botonMisOfertas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMisOfertasActionPerformed(evt);
+            }
+        });
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 255));
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Publicar nueva oferta");
+        botonPublicar.setBackground(new java.awt.Color(255, 200, 0));
+        botonPublicar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        botonPublicar.setForeground(new java.awt.Color(255, 255, 255));
+        botonPublicar.setText("Publicar nueva oferta");
+        botonPublicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPublicarActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(143, 0, 0));
         jButton4.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Cerrar sesión");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -570,9 +622,9 @@ public class InicioEmpleado extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonMisOfertas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonPublicar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -586,11 +638,11 @@ public class InicioEmpleado extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(botonPublicar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(botonMisOfertas)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(botonHistorial)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -610,6 +662,22 @@ public class InicioEmpleado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        iec.cerrarSesion(this);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void botonMisOfertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMisOfertasActionPerformed
+        iec.cambiarCard("misOfertasCard", this);
+    }//GEN-LAST:event_botonMisOfertasActionPerformed
+
+    private void botonPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPublicarActionPerformed
+        iec.cambiarCard("publicarCard", this);
+    }//GEN-LAST:event_botonPublicarActionPerformed
+
+    private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
+        iec.cambiarCard("historialCard", this);
+    }//GEN-LAST:event_botonHistorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -637,13 +705,14 @@ public class InicioEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel cardHolderPanel;
+    public javax.swing.JButton botonHistorial;
+    public javax.swing.JButton botonMisOfertas;
+    public javax.swing.JButton botonPublicar;
+    public javax.swing.JPanel cardHolderPanel;
     private javax.swing.JTextField datePickerPlaceholder1;
     private javax.swing.JTextField datePickerPlaceholder2;
+    private javax.swing.JPanel historialPanel;
     private javax.swing.JPanel informacionOfertaPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -688,6 +757,7 @@ public class InicioEmpleado extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JPanel misOfertasPanel;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JPanel publicarPanel;
     // End of variables declaration//GEN-END:variables

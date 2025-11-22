@@ -15,8 +15,8 @@ public class LoginController {
     public void procesarValidacion(LoginJDialog vista) {
         //Verifica estado de los campos (correo y contra)
         int estado = 0;
-        String correo = vista.getCorreoTextFieldText();
-        char[] contrasena = vista.getContraPasswordFieldArray();
+        String correo = vista.correoTextField.getText();
+        char[] contrasena = vista.contraPasswordField.getPassword();
         
         boolean correoInvalido = (correo == null || correo.trim().isEmpty() || correo.equals(Placeholder.correo));
         boolean contraInvalida = (contrasena == null || contrasena.length == 0 || 
@@ -37,7 +37,7 @@ public class LoginController {
         //3 <- Correo y Contraseña ...
         switch (estado) {
             case 0:
-                String tipoUsuario = vista.getTipoUsuario();
+                String tipoUsuario = (String)vista.tipoUsuarioComboBox.getSelectedItem();
                 if (tipoUsuario.equals("Alumno")) {
                     Alumno a = LoginService.consultarAlumnoDB(correo, contrasena);
                     if (a != null) {
@@ -48,7 +48,9 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.setMsgError("Credenciales incorrectas.");
+                        vista.correoTextField.setText("");
+                        vista.contraPasswordField.setText("");
+                        vista.msgError.setText("Credenciales incorrectas.");
                     }
                 } else if (tipoUsuario.equals("Profesor")) {
                     Profesor p = LoginService.consultarProfesorDB(correo, contrasena);
@@ -60,7 +62,9 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.setMsgError("Credenciales incorrectas.");
+                        vista.correoTextField.setText("");
+                        vista.contraPasswordField.setText("");
+                        vista.msgError.setText("Credenciales incorrectas.");
                     }
                 } else if (tipoUsuario.equals("Empresa")) {
                     EmpleadoEmpresa e = LoginService.consultarEmpleadoEmpresaDB(correo, contrasena);
@@ -72,23 +76,25 @@ public class LoginController {
                         vista.dispose();
                     }
                     else {
-                        vista.setMsgError("Credenciales incorrectas.");
+                        vista.correoTextField.setText("");
+                        vista.contraPasswordField.setText("");
+                        vista.msgError.setText("Credenciales incorrectas.");
                     }
                 }
                 break;
                 
             case 1:
                 vista.setCorreoBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
-                vista.setMsgError("Por favor ingrese un correo válido.");
+                vista.msgError.setText("Por favor ingrese un correo válido.");
                 break;
             case 2:
                 vista.setContraBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
-                vista.setMsgError("Por favor ingrese su contraseña.");
+                vista.msgError.setText("Por favor ingrese su contraseña.");
                 break;
             case 3:
                 vista.setCorreoBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
                 vista.setContraBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
-                vista.setMsgError("Debe ingresar correo y contraseña.");
+                vista.msgError.setText("Debe ingresar correo y contraseña.");
                 break;
         }
     }

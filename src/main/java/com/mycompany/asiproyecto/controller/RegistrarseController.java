@@ -1,14 +1,36 @@
 package com.mycompany.asiproyecto.controller;
 
-import java.util.Arrays;
 import com.mycompany.asiproyecto.Colores;
+import java.util.Arrays;
 import com.mycompany.asiproyecto.model.*;
 import com.mycompany.asiproyecto.dao.*;
 import com.mycompany.asiproyecto.view.RegistrarseJDialog;
 import com.mycompany.asiproyecto.service.RegistrarseService;
-import javax.swing.border.LineBorder;
+import java.awt.CardLayout;
 
 public class RegistrarseController {
+    public void cambiarTipoUsuarioCard(String cardName, RegistrarseJDialog vista) {
+        CardLayout cl = (CardLayout) vista.cardHolderPanel.getLayout();
+        cl.show(vista.cardHolderPanel, cardName);
+        switch(cardName) {
+            case "estudianteCard":
+                vista.botonEstudiante.setBackground(Colores.BUTTON_YELLOW);
+                vista.botonProfesor.setBackground(Colores.BUTTON_GRAY);
+                vista.botonEmpresa.setBackground(Colores.BUTTON_GRAY);
+                break;
+            case "profesorCard":
+                vista.botonEstudiante.setBackground(Colores.BUTTON_GRAY);
+                vista.botonProfesor.setBackground(Colores.BUTTON_YELLOW);
+                vista.botonEmpresa.setBackground(Colores.BUTTON_GRAY);
+                break;
+            case "empresaCard":
+                vista.botonEstudiante.setBackground(Colores.BUTTON_GRAY);
+                vista.botonProfesor.setBackground(Colores.BUTTON_GRAY);
+                vista.botonEmpresa.setBackground(Colores.BUTTON_YELLOW);
+                break;
+        }
+    }
+    
     private boolean contraCoincidenAlumno(RegistrarseJDialog vista) {
         return Arrays.equals(vista.contraPasswordFieldA1.getPassword(), vista.contraPasswordFieldA2.getPassword());
     }

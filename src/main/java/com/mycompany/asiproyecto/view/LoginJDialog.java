@@ -5,8 +5,6 @@ import com.mycompany.asiproyecto.Placeholder;
 import com.mycompany.asiproyecto.Colores;
 
 import java.awt.*;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import java.util.Arrays;
 import javax.swing.border.LineBorder;
 
@@ -36,22 +34,6 @@ public class LoginJDialog extends javax.swing.JDialog {
     public void setContraBorder(Color c, int t) {
         LineBorder lineBorder = new LineBorder(c, t);
         contraPasswordField.setBorder(lineBorder);
-    }
-    
-    public void setMsgError(String e) {
-        msgError.setText(e);
-    }
-    
-    public String getCorreoTextFieldText() {
-        return correoTextField.getText();
-    }
-    
-    public char[] getContraPasswordFieldArray() {
-        return contraPasswordField.getPassword();
-    }
-    
-    public String getTipoUsuario() {
-        return (String) tipoUsuarioComboBox.getSelectedItem();
     }
     
     /**
@@ -106,7 +88,6 @@ public class LoginJDialog extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel4.setText("Correo Electrónico");
 
-        correoTextField.setText("jTextField1");
         correoTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 correoTextFieldFocusGained(evt);
@@ -119,7 +100,6 @@ public class LoginJDialog extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel5.setText("Contraseña");
 
-        contraPasswordField.setText("jPasswordField1");
         contraPasswordField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 contraPasswordFieldFocusGained(evt);
@@ -322,8 +302,8 @@ public class LoginJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField contraPasswordField;
-    private javax.swing.JTextField correoTextField;
+    public javax.swing.JPasswordField contraPasswordField;
+    public javax.swing.JTextField correoTextField;
     private javax.swing.JLabel iconLabel;
     private javax.swing.JButton iniciarSesionButton;
     private javax.swing.JLabel jLabel1;
@@ -335,7 +315,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel msgError;
-    private javax.swing.JComboBox<String> tipoUsuarioComboBox;
+    public javax.swing.JLabel msgError;
+    public javax.swing.JComboBox<String> tipoUsuarioComboBox;
     // End of variables declaration//GEN-END:variables
 }
