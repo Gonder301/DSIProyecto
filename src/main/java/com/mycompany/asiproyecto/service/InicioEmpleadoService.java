@@ -22,13 +22,13 @@ public class InicioEmpleadoService {
         Oferta oferta = new Oferta();
         oferta.setNombreEmpresa(vista.nombreEmpresaTF.getText());
         oferta.setDescriptionPerfil(formatearTextArea(vista.descripcionPerfilTA));
-        oferta.setPuestoPractica(vista.puestoTF.getText());
+        oferta.setPuestoPractica((String)vista.puestoComboBox.getSelectedItem());
         oferta.setRequisitos(formatearTextArea(vista.requisitosTA));
         oferta.setFechaInicio(vista.datePickerInicio.getDate());
         oferta.setFechaFin(vista.datePickerFin.getDate());
         oferta.setModalidad((String)vista.modalidadComboBox.getSelectedItem());
         oferta.setHabilidadesCompetencias(formatearTextArea(vista.habilidadesCompetenciasTA));
-        oferta.setArea(vista.areaTF.getText());
+        oferta.setArea((String)vista.areaComboBox.getSelectedItem());
         oferta.setDistrito(vista.distritoTF.getText());
         oferta.setBeneficios(formatearTextArea(vista.beneficiosTA));
         oferta.setConsultas(formatearTextArea(vista.consultasTA));
@@ -55,22 +55,6 @@ public class InicioEmpleadoService {
         }
         else {
             vista.distritoTF.setBorder(lineBorderDef);
-        }
-        
-        if (vista.areaTF.getText().isEmpty()) {
-            vista.areaTF.setBorder(lineBorderErr);
-            camposVacios += 1;
-        }
-        else {
-            vista.areaTF.setBorder(lineBorderDef);
-        }
-        
-        if (vista.puestoTF.getText().isEmpty()) {
-            vista.puestoTF.setBorder(lineBorderErr);
-            camposVacios += 1;
-        }
-        else {
-            vista.puestoTF.setBorder(lineBorderDef);
         }
         
         return camposVacios;
