@@ -16,13 +16,13 @@ public class PostulacionDAO {
         List<Postulacion> lista = new ArrayList<>();
         // Se hace JOIN con Alumno y Oferta para obtener datos de visualización (nombre,
         // puesto)
-        String sql = "SELECT p.idpostulacion, p.idalumno, p.idoferta, p.idempleado, " +
+        String sql = "SELECT p.idpostulacion, p.idalumno, p.idoferta, o.empleadoid, " +
                 "p.fechapostulacion, p.requisitolink, p.estado, " +
                 "a.nombresalumno, a.apellidosalumno, o.puestopractica " +
                 "FROM Postulacion p " +
                 "INNER JOIN Alumno a ON p.idalumno = a.idalumno " +
                 "INNER JOIN Oferta o ON p.idoferta = o.idoferta " +
-                "WHERE p.idempleado = ?";
+                "WHERE o.empleadoid = ?";
 
         try (Connection conn = ConnectionPool.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -36,7 +36,7 @@ public class PostulacionDAO {
                     p.setIdPostulacion(rs.getInt("idpostulacion"));
                     p.setIdAlumno(rs.getInt("idalumno"));
                     p.setIdOferta(rs.getInt("idoferta"));
-                    p.setIdEmpleado(rs.getInt("idempleado"));
+                    p.setIdEmpleado(rs.getInt("empleadoid"));
                     p.setFechaPostulacion(rs.getObject("fechapostulacion", LocalDate.class));
                     p.setRequisitoLink(rs.getString("requisitolink"));
                     p.setEstado(rs.getString("estado"));

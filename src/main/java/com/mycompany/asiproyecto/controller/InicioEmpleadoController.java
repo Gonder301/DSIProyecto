@@ -20,17 +20,17 @@ public class InicioEmpleadoController {
         cl.show(vista.cardHolderPanel, cardName);
         switch(cardName) {
             case "publicarCard":
-                vista.botonPublicar.setBackground(Colores.BUTTON_YELLOW);
+                vista.botonPublicarNuevaOferta.setBackground(Colores.BUTTON_YELLOW);
                 vista.botonMisOfertas.setBackground(Colores.BUTTON_BLUE);
                 vista.botonHistorial.setBackground(Colores.BUTTON_BLUE);
                 break;
             case "misOfertasCard":
-                vista.botonPublicar.setBackground(Colores.BUTTON_BLUE);
+                vista.botonPublicarNuevaOferta.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMisOfertas.setBackground(Colores.BUTTON_YELLOW);
                 vista.botonHistorial.setBackground(Colores.BUTTON_BLUE);
                 break;
             case "historialCard":
-                vista.botonPublicar.setBackground(Colores.BUTTON_BLUE);
+                vista.botonPublicarNuevaOferta.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMisOfertas.setBackground(Colores.BUTTON_BLUE);
                 vista.botonHistorial.setBackground(Colores.BUTTON_YELLOW);
                 break;
