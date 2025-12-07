@@ -6,11 +6,57 @@ import com.mycompany.asiproyecto.Colores;
 import com.mycompany.asiproyecto.dao.OfertaDAO;
 import com.mycompany.asiproyecto.model.Oferta;
 import com.mycompany.asiproyecto.view.InicioEmpleado;
+import com.mycompany.asiproyecto.view.OfertaPanel;
 import java.time.LocalDate;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 
 public class InicioEmpleadoService {
+    
+    public static void cargarMisOfertas(InicioEmpleado vista) {
+        OfertaDAO ofertaDAO = new OfertaDAO();
+        vista.todasLasOfertas = ofertaDAO.obtenerOfertasPorEmpleado(vista.empleadoEmpresa.getIdEmpleado());
+        // Mostramos todas inicialmente
+        actualizarPanelOfertas(vista.todasLasOfertas, vista);
+    }
+    
+    public static void actualizarPanelOfertas (java.util.List<Oferta> ofertasFiltradas, InicioEmpleado vista) {
+        OfertaDAO ofertaDAO = new OfertaDAO();
+
+        vista.panelMisOfertas.removeAll();
+        vista.panelMisOfertas.setLayout(new java.awt.BorderLayout());
+
+        JPanel container = new JPanel(new java.awt.GridLayout(0, 2, 10, 10)); // 2 columns
+        container.setBackground(new java.awt.Color(240, 240, 240));
+
+        for (Oferta o : ofertasFiltradas) {
+            OfertaPanel op = new OfertaPanel(o, true);
+            op.addEliminarListener(e -> {
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(vista, "¿Estás seguro de eliminar esta oferta?",
+                        "Confirmar eliminación", javax.swing.JOptionPane.YES_NO_OPTION);
+                if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                    if (ofertaDAO.eliminarOferta(o.getIdOferta())) {
+                        cargarMisOfertas(vista);
+                        javax.swing.JOptionPane.showMessageDialog(vista, "Oferta eliminada correctamente");
+                    }
+                }
+            });
+            op.addEditarListener(e -> {
+                javax.swing.JOptionPane.showMessageDialog(vista, "Funcionalidad de editar próximamente.");
+            });
+            container.add(op);
+        }
+
+        JScrollPane scroll = new JScrollPane(container);
+        scroll.setPreferredSize(new java.awt.Dimension(0, 0));
+        vista.panelMisOfertas.add(scroll, java.awt.BorderLayout.CENTER);
+        vista.jLabel24.setText("OFERTAS ENCONTRADAS: " + ofertasFiltradas.size());
+        vista.panelMisOfertas.revalidate();
+        vista.panelMisOfertas.repaint();
+    }
+    
     public static String formatearTextArea(JTextArea ta) {
         //Reemplaza los saltos de linea por comas.
         String taFormateado = ta.getText().replaceAll("[\\r\\n]+", ", ");

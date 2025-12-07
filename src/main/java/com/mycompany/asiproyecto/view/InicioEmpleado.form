@@ -1114,8 +1114,14 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="OFERTAS ENCONTRADAS: ---"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                     <Container class="javax.swing.JPanel" name="panelMisOfertas">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
 
                       <Layout>
                         <DimensionLayout dim="0">
