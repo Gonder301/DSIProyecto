@@ -82,6 +82,7 @@ public class InicioEmpleadoService {
 
         JScrollPane scroll = new JScrollPane(container);
         scroll.setPreferredSize(new java.awt.Dimension(0, 0));
+        scroll.getVerticalScrollBar().setUnitIncrement(20);
         vista.panelMisOfertas.add(scroll, java.awt.BorderLayout.CENTER);
         vista.jLabel24.setText("OFERTAS ENCONTRADAS: " + ofertasFiltradas.size());
         vista.panelMisOfertas.revalidate();

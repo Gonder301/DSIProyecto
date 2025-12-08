@@ -40,9 +40,8 @@ public class InicioAlumno extends javax.swing.JFrame {
         nombreLabel.setText(alumno.getNombresAlumno());
         setLocationRelativeTo(null);
         InicioAlumnoService.llenarMiInfo(this);
-        InicioAlumnoService.cargarTodasLasOfertas(this);
         InicioAlumnoService.cargarMisPostulaciones(this);
-        cargarMisContratos();
+        InicioAlumnoService.cargarTodasLasOfertas(this);
     }
 
     public InicioAlumno(Alumno a) {
@@ -143,7 +142,7 @@ public class InicioAlumno extends javax.swing.JFrame {
                 actionPanel.add(btnEstado);
                 actionPanel.add(btnEliminar);
 
-                //Desabilita el botón eliminar si la postulación no está en estado pendiente
+                // Desabilita el botón eliminar si la postulación no está en estado pendiente
                 if (!"Pendiente".equalsIgnoreCase(p.getEstado())) {
                     btnEliminar.setBackground(java.awt.Color.GRAY);
                     btnEliminar.setEnabled(false);
@@ -233,6 +232,7 @@ public class InicioAlumno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -291,6 +291,7 @@ public class InicioAlumno extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         misContratosScrollPane = new javax.swing.JScrollPane();
         misInformesPanel = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -737,7 +738,7 @@ public class InicioAlumno extends javax.swing.JFrame {
 
         jLabel37.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("Todos los resultados");
+        jLabel37.setText("Se muestran las postulaciones que han sido aceptadas");
 
         misContratosScrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
@@ -771,17 +772,27 @@ public class InicioAlumno extends javax.swing.JFrame {
 
         cardHolderPanel.add(misContratosPanel, "misContratosCard");
 
-        misInformesPanel.setBackground(new java.awt.Color(0, 143, 0));
+        misInformesPanel.setBackground(new java.awt.Color(143, 0, 0));
+
+        jLabel38.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("MIS INFORMES");
 
         javax.swing.GroupLayout misInformesPanelLayout = new javax.swing.GroupLayout(misInformesPanel);
         misInformesPanel.setLayout(misInformesPanelLayout);
         misInformesPanelLayout.setHorizontalGroup(
             misInformesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, misInformesPanelLayout.createSequentialGroup()
+                .addContainerGap(265, Short.MAX_VALUE)
+                .addComponent(jLabel38)
+                .addGap(259, 259, 259))
         );
         misInformesPanelLayout.setVerticalGroup(
             misInformesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+            .addGroup(misInformesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addContainerGap(534, Short.MAX_VALUE))
         );
 
         cardHolderPanel.add(misInformesPanel, "misInformesCard");
@@ -1057,6 +1068,7 @@ public class InicioAlumno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

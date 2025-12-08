@@ -40,15 +40,25 @@ public class InicioAlumnoService {
 
         PostulacionDAO postulacionDAO = new PostulacionDAO();
 
+        // Create a set of IDs for offers the student has already applied to, for O(1)
+        // lookup
+        // This avoids calling the DB for every single offer in the loop below.
+        java.util.Set<Integer> ofertasPostuladasIds = new java.util.HashSet<>();
+        if (vista.todasLasPostulaciones != null) {
+            for (Postulacion p : vista.todasLasPostulaciones) {
+                ofertasPostuladasIds.add(p.getIdOferta());
+            }
+        }
+
         if (ofertasParaMostrar != null) {
             for (Oferta o : ofertasParaMostrar) {
                 // isEditable = false para alumno
                 OfertaPanel op = new OfertaPanel(o, false);
                 op.setPostularVisible(true);
 
-                // Verificar si ya postulo
-                boolean yaPostulo = postulacionDAO.existePostulacion(vista.alumno.getIdAlumno(),
-                        o.getIdOferta());
+                // Check against the cache set instead of DB
+                boolean yaPostulo = ofertasPostuladasIds.contains(o.getIdOferta());
+
                 if (yaPostulo) {
                     op.setPostularEnabled(false);
                 } else {
@@ -143,7 +153,18 @@ public class InicioAlumnoService {
                                                         "Te has postulado correctamente. Archivo subido.");
                                         op.setPostularEnabled(false);
                                         // Update Cache
+                                        // RELOAD APPLICATIONS (which updates redundant tracking)
                                         cargarMisPostulaciones(vista);
+                                        // RE-RENDER offers to reflect the new "Applied" status locally without full DB
+                                        // reload
+                                        // However, since we just added a new postulacion, we should update the cache
+                                        // map.
+                                        // Easiest is to just reload offers view or update local cache.
+                                        // Correct flow:
+                                        // 1. cargarMisPostulaciones updates 'vista.todasLasPostulaciones'
+                                        // 2. We can then re-call actualizarPanelOfertas with current offers to refresh
+                                        // buttons
+                                        actualizarPanelOfertas(ofertasParaMostrar, vista);
                                     } else {
                                         throw new Exception(
                                                 "Error al registrar en base de datos.");
