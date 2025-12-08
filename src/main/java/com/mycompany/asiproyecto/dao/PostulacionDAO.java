@@ -23,7 +23,7 @@ public class PostulacionDAO {
                 "FROM Postulacion p " +
                 "INNER JOIN Alumno a ON p.idalumno = a.idalumno " +
                 "INNER JOIN Oferta o ON p.idoferta = o.idoferta " +
-                "WHERE o.empleadoid = ?";
+                "WHERE o.empleadoid = ? AND p.estado = 'Pendiente'";
 
         try (Connection conn = ConnectionPool.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -173,5 +173,22 @@ public class PostulacionDAO {
             e.printStackTrace();
         }
         return eliminado;
+    }
+
+    public boolean actualizarEstado(int idPostulacion, String nuevoEstado) {
+        boolean actualizado = false;
+        String sql = "UPDATE Postulacion SET estado = ? WHERE idpostulacion = ?";
+        try (Connection conn = ConnectionPool.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, nuevoEstado);
+            pstmt.setInt(2, idPostulacion);
+            if (pstmt.executeUpdate() > 0) {
+                actualizado = true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar estado postulación: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return actualizado;
     }
 }

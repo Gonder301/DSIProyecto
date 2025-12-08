@@ -17,13 +17,14 @@ import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 
 public class InicioEmpleadoService {
-    
+
     public static void cargarMisPostulaciones(InicioEmpleado vista) {
         PostulacionDAO postulacionDAO = new PostulacionDAO();
-        vista.todasLasPostulaciones = postulacionDAO.obtenerPostulacionPorEmpleado(vista.empleadoEmpresa.getIdEmpleado());
+        vista.todasLasPostulaciones = postulacionDAO
+                .obtenerPostulacionPorEmpleado(vista.empleadoEmpresa.getIdEmpleado());
         actualizarTablaPostulaciones(vista.todasLasPostulaciones, vista);
     }
-    
+
     public static void actualizarTablaPostulaciones(List<Postulacion> postulaciones, InicioEmpleado vista) {
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) vista.jTable1.getModel();
         model.setRowCount(0); // Limpiar tabla
@@ -35,19 +36,24 @@ public class InicioEmpleadoService {
             row[2] = p.getFechaPostulacion().toString();
             row[3] = p.getEstado();
             row[4] = "Ver CV/Portafolio";
-            row[5] = "Acciones";
+            row[5] = "Evaluar"; // Changed from "Acciones" to "Evaluar" to match requirement
             model.addRow(row);
         }
     }
-    
+
+    public static boolean actualizarEstadoPostulacion(int idPostulacion, String estado) {
+        PostulacionDAO dao = new PostulacionDAO();
+        return dao.actualizarEstado(idPostulacion, estado);
+    }
+
     public static void cargarMisOfertas(InicioEmpleado vista) {
         OfertaDAO ofertaDAO = new OfertaDAO();
         vista.todasLasOfertas = ofertaDAO.obtenerOfertasPorEmpleado(vista.empleadoEmpresa.getIdEmpleado());
         // Mostramos todas inicialmente
         actualizarPanelOfertas(vista.todasLasOfertas, vista);
     }
-    
-    public static void actualizarPanelOfertas (java.util.List<Oferta> ofertasFiltradas, InicioEmpleado vista) {
+
+    public static void actualizarPanelOfertas(java.util.List<Oferta> ofertasFiltradas, InicioEmpleado vista) {
         OfertaDAO ofertaDAO = new OfertaDAO();
 
         vista.panelMisOfertas.removeAll();
@@ -81,17 +87,17 @@ public class InicioEmpleadoService {
         vista.panelMisOfertas.revalidate();
         vista.panelMisOfertas.repaint();
     }
-    
+
     public static String formatearTextArea(JTextArea ta) {
-        //Reemplaza los saltos de linea por comas.
+        // Reemplaza los saltos de linea por comas.
         String taFormateado = ta.getText().replaceAll("[\\r\\n]+", ", ");
-        //Si al final se dejó un salto de linea en el texto original.
+        // Si al final se dejó un salto de linea en el texto original.
         if (taFormateado.endsWith(", ")) {
             taFormateado = taFormateado.substring(0, taFormateado.length() - 2);
         }
         return taFormateado;
     }
-    
+
     public static void agregarDatePickers(InicioEmpleado vista) {
         DatePickerSettings dateSettings1 = new DatePickerSettings();
         dateSettings1.setFormatForDatesCommonEra("dd-MM-yyyy");
@@ -107,49 +113,47 @@ public class InicioEmpleadoService {
         vista.informacionOfertaPanel.revalidate();
         vista.informacionOfertaPanel.repaint();
     }
-    
+
     public static Oferta obtenerOfertaDeForm(InicioEmpleado vista) {
         Oferta oferta = new Oferta();
         oferta.setNombreEmpresa(vista.nombreEmpresaTF.getText());
         oferta.setDescripcionPerfil(formatearTextArea(vista.descripcionPerfilTA));
-        oferta.setPuestoPractica((String)vista.puestoComboBox.getSelectedItem());
+        oferta.setPuestoPractica((String) vista.puestoComboBox.getSelectedItem());
         oferta.setRequisitos(formatearTextArea(vista.requisitosTA));
         oferta.setFechaInicio(vista.datePickerInicio.getDate());
         oferta.setFechaFin(vista.datePickerFin.getDate());
-        oferta.setModalidad((String)vista.modalidadComboBox.getSelectedItem());
+        oferta.setModalidad((String) vista.modalidadComboBox.getSelectedItem());
         oferta.setHabilidadesCompetencias(formatearTextArea(vista.habilidadesCompetenciasTA));
-        oferta.setArea((String)vista.areaComboBox.getSelectedItem());
+        oferta.setArea((String) vista.areaComboBox.getSelectedItem());
         oferta.setDistrito(vista.distritoTF.getText());
         oferta.setBeneficios(formatearTextArea(vista.beneficiosTA));
         oferta.setConsultas(formatearTextArea(vista.consultasTA));
         oferta.setEmpleadoID(vista.empleadoEmpresa.getIdEmpleado());
         return oferta;
     }
-    
+
     public static int camposVaciosFormOferta(InicioEmpleado vista) {
         int camposVacios = 0;
         LineBorder lineBorderErr = new LineBorder(Colores.TEXTFIELD_BORDER_ERR, 2);
         LineBorder lineBorderDef = new LineBorder(Colores.TEXTFIELD_BORDER_DEF, 1);
-        
+
         if (vista.nombreEmpresaTF.getText().isEmpty()) {
             vista.nombreEmpresaTF.setBorder(lineBorderErr);
             camposVacios += 1;
-        }
-        else {
+        } else {
             vista.nombreEmpresaTF.setBorder(lineBorderDef);
         }
-        
+
         if (vista.distritoTF.getText().isEmpty()) {
             vista.distritoTF.setBorder(lineBorderErr);
             camposVacios += 1;
-        }
-        else {
+        } else {
             vista.distritoTF.setBorder(lineBorderDef);
         }
-        
+
         return camposVacios;
     }
-    
+
     public static boolean registroOfertaExitoso(Oferta o) {
         OfertaDAO adao = new OfertaDAO();
         return adao.registrarOferta(o);
