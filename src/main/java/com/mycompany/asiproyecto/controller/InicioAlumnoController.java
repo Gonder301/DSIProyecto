@@ -43,35 +43,35 @@ public class InicioAlumnoController {
                 vista.botonMiInfo.setBackground(Colores.BUTTON_YELLOW);
                 vista.botonOfertasPracticas.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMisPostulaciones.setBackground(Colores.BUTTON_BLUE);
-                vista.botonAdjuntarContrato.setBackground(Colores.BUTTON_BLUE);
+                vista.botonMisContratos.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMisInformes.setBackground(Colores.BUTTON_BLUE);
                 break;
             case "ofertasDePracticasCard":
                 vista.botonOfertasPracticas.setBackground(Colores.BUTTON_YELLOW);
                 vista.botonMiInfo.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMisPostulaciones.setBackground(Colores.BUTTON_BLUE);
-                vista.botonAdjuntarContrato.setBackground(Colores.BUTTON_BLUE);
+                vista.botonMisContratos.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMisInformes.setBackground(Colores.BUTTON_BLUE);
                 break;
             case "misPostulacionesCard":
                 vista.botonMisPostulaciones.setBackground(Colores.BUTTON_YELLOW);
                 vista.botonOfertasPracticas.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMiInfo.setBackground(Colores.BUTTON_BLUE);
-                vista.botonAdjuntarContrato.setBackground(Colores.BUTTON_BLUE);
+                vista.botonMisContratos.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMisInformes.setBackground(Colores.BUTTON_BLUE);
                 break;
-            case "adjuntarContratoCard":
+            case "misContratosCard":
                 vista.botonMisPostulaciones.setBackground(Colores.BUTTON_BLUE);
                 vista.botonOfertasPracticas.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMiInfo.setBackground(Colores.BUTTON_BLUE);
-                vista.botonAdjuntarContrato.setBackground(Colores.BUTTON_YELLOW);
+                vista.botonMisContratos.setBackground(Colores.BUTTON_YELLOW);
                 vista.botonMisInformes.setBackground(Colores.BUTTON_BLUE);
                 break;
             case "misInformesCard":
                 vista.botonMisPostulaciones.setBackground(Colores.BUTTON_BLUE);
                 vista.botonOfertasPracticas.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMiInfo.setBackground(Colores.BUTTON_BLUE);
-                vista.botonAdjuntarContrato.setBackground(Colores.BUTTON_BLUE);
+                vista.botonMisContratos.setBackground(Colores.BUTTON_BLUE);
                 vista.botonMisInformes.setBackground(Colores.BUTTON_YELLOW);
                 break;
         }

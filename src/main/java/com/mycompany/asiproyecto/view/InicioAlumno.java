@@ -38,6 +38,7 @@ public class InicioAlumno extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         InicioAlumnoService.llenarMiInfo(this);
         InicioAlumnoService.cargarTodasLasOfertas(this);
+        cargarMisContratos();
     }
 
     public InicioAlumno(Alumno a) {
@@ -48,10 +49,11 @@ public class InicioAlumno extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         InicioAlumnoService.llenarMiInfo(this);
         InicioAlumnoService.cargarTodasLasOfertas(this);
+        cargarMisContratos();
     }
 
     private void cargarMisPostulaciones() {
-        if (misPostualcionesPanelInterno == null)
+        if (misPostulacionesScrollPane == null)
             return;
 
         JPanel container = new JPanel(new java.awt.GridLayout(0, 1, 10, 10));
@@ -144,12 +146,82 @@ public class InicioAlumno extends javax.swing.JFrame {
             }
         }
 
-        misPostualcionesPanelInterno.setViewportView(container);
-        misPostualcionesPanelInterno.revalidate();
-        misPostualcionesPanelInterno.repaint();
+        misPostulacionesScrollPane.setViewportView(container);
+        misPostulacionesScrollPane.revalidate();
+        misPostulacionesScrollPane.repaint();
+    }
+
+    private void cargarMisContratos() {
+        if (misContratosScrollPane == null)
+            return;
+
+        JPanel container = new JPanel(new java.awt.GridLayout(0, 1, 10, 10));
+        container.setBackground(new java.awt.Color(240, 240, 240));
+
+        PostulacionDAO postulacionDAO = new PostulacionDAO();
+        List<Postulacion> misPostulaciones = postulacionDAO.obtenerPostulacionesPorAlumno(alumno.getIdAlumno());
+
+        if (misPostulaciones != null) {
+            for (Postulacion p : misPostulaciones) {
+                if ("Aceptado".equalsIgnoreCase(p.getEstado())) {
+                    // Create logic wrapper panel
+                    JPanel rowPanel = new JPanel(new BorderLayout(10, 10));
+                    rowPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+                    rowPanel.setBackground(java.awt.Color.WHITE);
+
+                    // Oferta Panel
+                    OfertaPanel op = new OfertaPanel(p.getOferta(), false);
+                    op.setPostularVisible(false);
+
+                    // Action Panel (Adjuntar Button)
+                    JPanel actionPanel = new JPanel(new java.awt.GridLayout(1, 1));
+                    actionPanel.setPreferredSize(new Dimension(150, 40));
+                    actionPanel.setOpaque(false);
+
+                    // Center the button vertically if needed, or just fill
+                    // Using a flow layout within the grid cell or just adding directly can work.
+                    // Let's make it look nice.
+
+                    JButton btnAdjuntar = new JButton("Adjuntar");
+                    btnAdjuntar.setBackground(new java.awt.Color(0, 51, 255));
+                    btnAdjuntar.setForeground(java.awt.Color.WHITE);
+                    btnAdjuntar.setFont(new java.awt.Font("SansSerif", 1, 14));
+                    btnAdjuntar.setFocusPainted(false);
+
+                    // Logic for button is not specified, so no action listener for now.
+
+                    // Container for the button to center it or give it margins?
+                    // The prompt says "Al lado de cada panel", so BorderLayout.EAST is good.
+                    // Let's put it directly in the East position, maybe wrapped for size control.
+
+                    JPanel buttonWrapper = new JPanel(new java.awt.GridBagLayout());
+                    buttonWrapper.setOpaque(false);
+                    buttonWrapper.setPreferredSize(new Dimension(150, 0));
+
+                    java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+                    gbc.gridx = 0;
+                    gbc.gridy = 0;
+                    gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gbc.weightx = 1.0;
+                    gbc.insets = new java.awt.Insets(0, 5, 0, 5);
+
+                    buttonWrapper.add(btnAdjuntar, gbc);
+
+                    rowPanel.add(op, BorderLayout.CENTER);
+                    rowPanel.add(buttonWrapper, BorderLayout.EAST);
+
+                    container.add(rowPanel);
+                }
+            }
+        }
+
+        misContratosScrollPane.setViewportView(container);
+        misContratosScrollPane.revalidate();
+        misContratosScrollPane.repaint();
     }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -205,8 +277,11 @@ public class InicioAlumno extends javax.swing.JFrame {
         misPostulacionesPanel = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        misPostualcionesPanelInterno = new javax.swing.JScrollPane();
-        adjuntarContratoPanel = new javax.swing.JPanel();
+        misPostulacionesScrollPane = new javax.swing.JScrollPane();
+        misContratosPanel = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        misContratosScrollPane = new javax.swing.JScrollPane();
         misInformesPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -217,7 +292,7 @@ public class InicioAlumno extends javax.swing.JFrame {
         botonOfertasPracticas = new javax.swing.JButton();
         botonMiInfo = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
-        botonAdjuntarContrato = new javax.swing.JButton();
+        botonMisContratos = new javax.swing.JButton();
         botonMisInformes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -628,7 +703,7 @@ public class InicioAlumno extends javax.swing.JFrame {
                 .addGap(0, 26, Short.MAX_VALUE)
                 .addGroup(misPostulacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel26)
-                    .addComponent(misPostualcionesPanelInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(misPostulacionesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
         misPostulacionesPanelLayout.setVerticalGroup(
@@ -638,24 +713,53 @@ public class InicioAlumno extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(misPostualcionesPanelInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(misPostulacionesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
         cardHolderPanel.add(misPostulacionesPanel, "misPostulacionesCard");
 
-        javax.swing.GroupLayout adjuntarContratoPanelLayout = new javax.swing.GroupLayout(adjuntarContratoPanel);
-        adjuntarContratoPanel.setLayout(adjuntarContratoPanelLayout);
-        adjuntarContratoPanelLayout.setHorizontalGroup(
-            adjuntarContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
+        misContratosPanel.setBackground(new java.awt.Color(143, 0, 0));
+
+        jLabel36.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("MIS CONTRATOS");
+
+        jLabel37.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Todos los resultados");
+
+        javax.swing.GroupLayout misContratosPanelLayout = new javax.swing.GroupLayout(misContratosPanel);
+        misContratosPanel.setLayout(misContratosPanelLayout);
+        misContratosPanelLayout.setHorizontalGroup(
+            misContratosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(misContratosPanelLayout.createSequentialGroup()
+                .addGroup(misContratosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(misContratosPanelLayout.createSequentialGroup()
+                        .addGap(251, 251, 251)
+                        .addComponent(jLabel36))
+                    .addGroup(misContratosPanelLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(misContratosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37)
+                            .addComponent(misContratosScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
-        adjuntarContratoPanelLayout.setVerticalGroup(
-            adjuntarContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+        misContratosPanelLayout.setVerticalGroup(
+            misContratosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(misContratosPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel37)
+                .addGap(18, 18, 18)
+                .addComponent(misContratosScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        cardHolderPanel.add(adjuntarContratoPanel, "adjuntarContratoCard");
+        cardHolderPanel.add(misContratosPanel, "misContratosCard");
+
+        misInformesPanel.setBackground(new java.awt.Color(0, 143, 0));
 
         javax.swing.GroupLayout misInformesPanelLayout = new javax.swing.GroupLayout(misInformesPanel);
         misInformesPanel.setLayout(misInformesPanelLayout);
@@ -764,13 +868,13 @@ public class InicioAlumno extends javax.swing.JFrame {
             }
         });
 
-        botonAdjuntarContrato.setBackground(new java.awt.Color(0, 51, 255));
-        botonAdjuntarContrato.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        botonAdjuntarContrato.setForeground(new java.awt.Color(255, 255, 255));
-        botonAdjuntarContrato.setText("Adjuntar contrato");
-        botonAdjuntarContrato.addActionListener(new java.awt.event.ActionListener() {
+        botonMisContratos.setBackground(new java.awt.Color(0, 51, 255));
+        botonMisContratos.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        botonMisContratos.setForeground(new java.awt.Color(255, 255, 255));
+        botonMisContratos.setText("Mis contratos");
+        botonMisContratos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAdjuntarContratoActionPerformed(evt);
+                botonMisContratosActionPerformed(evt);
             }
         });
 
@@ -802,7 +906,7 @@ public class InicioAlumno extends javax.swing.JFrame {
                     .addComponent(botonMisPostulaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonOfertasPracticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonMiInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAdjuntarContrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonMisContratos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonMisInformes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -823,7 +927,7 @@ public class InicioAlumno extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonMisPostulaciones)
                 .addGap(18, 18, 18)
-                .addComponent(botonAdjuntarContrato)
+                .addComponent(botonMisContratos)
                 .addGap(18, 18, 18)
                 .addComponent(botonMisInformes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -867,8 +971,8 @@ public class InicioAlumno extends javax.swing.JFrame {
         iac.cerrarSesion(this);
     }
 
-    private void botonAdjuntarContratoActionPerformed(java.awt.event.ActionEvent evt) {
-        iac.cambiarCard("adjuntarContratoCard", this);
+    private void botonMisContratosActionPerformed(java.awt.event.ActionEvent evt) {
+        iac.cambiarCard("misContratosCard", this);
     }
 
     private void botonMisInformesActionPerformed(java.awt.event.ActionEvent evt) {
@@ -906,12 +1010,11 @@ public class InicioAlumno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel adjuntarContratoPanel;
     public javax.swing.JComboBox<String> areaOferaComboBox;
-    public javax.swing.JButton botonAdjuntarContrato;
     private javax.swing.JButton botonBuscarMisOfertasFiltro;
     private javax.swing.JButton botonCerrarSesion;
     public javax.swing.JButton botonMiInfo;
+    public javax.swing.JButton botonMisContratos;
     public javax.swing.JButton botonMisInformes;
     public javax.swing.JButton botonMisPostulaciones;
     public javax.swing.JButton botonOfertasPracticas;
@@ -940,6 +1043,8 @@ public class InicioAlumno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -962,9 +1067,11 @@ public class InicioAlumno extends javax.swing.JFrame {
     public javax.swing.JLabel labelNombres;
     public javax.swing.JLabel labelProfesorAsignado;
     private javax.swing.JPanel miInformacionPanel;
+    private javax.swing.JPanel misContratosPanel;
+    private javax.swing.JScrollPane misContratosScrollPane;
     private javax.swing.JPanel misInformesPanel;
-    public javax.swing.JScrollPane misPostualcionesPanelInterno;
     private javax.swing.JPanel misPostulacionesPanel;
+    public javax.swing.JScrollPane misPostulacionesScrollPane;
     public javax.swing.JComboBox<String> modalidadOfertaComboBox;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JPanel ofertasDePracticasPanel;
