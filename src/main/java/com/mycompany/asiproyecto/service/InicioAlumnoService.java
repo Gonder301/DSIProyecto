@@ -7,6 +7,7 @@ import com.mycompany.asiproyecto.model.Oferta;
 import com.mycompany.asiproyecto.model.Postulacion;
 import com.mycompany.asiproyecto.view.InicioAlumno;
 import com.mycompany.asiproyecto.view.OfertaPanel;
+import com.mycompany.asiproyecto.view.MisContratosJDialog;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -59,12 +60,11 @@ public class InicioAlumnoService {
                     btnAdjuntar.setForeground(java.awt.Color.WHITE);
                     btnAdjuntar.setFont(new java.awt.Font("SansSerif", 1, 14));
                     btnAdjuntar.setFocusPainted(false);
-
-                    // Logic for button is not specified, so no action listener for now.
-
-                    // Container for the button to center it or give it margins?
-                    // The prompt says "Al lado de cada panel", so BorderLayout.EAST is good.
-                    // Let's put it directly in the East position, maybe wrapped for size control.
+                    btnAdjuntar.addActionListener(e -> {
+                        MisContratosJDialog dialog = new MisContratosJDialog(vista, true, p.getIdAlumno(),
+                                p.getIdOferta());
+                        dialog.setVisible(true);
+                    });
 
                     JPanel buttonWrapper = new JPanel(new java.awt.GridBagLayout());
                     buttonWrapper.setOpaque(false);
@@ -91,7 +91,7 @@ public class InicioAlumnoService {
         vista.misContratosScrollPane.revalidate();
         vista.misContratosScrollPane.repaint();
     }
-    
+
     public static void cargarTodasLasOfertas(InicioAlumno vista) {
         OfertaDAO ofertaDAO = new OfertaDAO();
         vista.todasLasOfertas = ofertaDAO.obtenerTodasLasOfertas();
@@ -137,7 +137,7 @@ public class InicioAlumnoService {
                     btnEstado.setForeground(java.awt.Color.BLACK);
                 } else if ("Rechazado".equalsIgnoreCase(p.getEstado())) {
                     btnEstado.setBackground(java.awt.Color.RED);
-                    btnEstado.setForeground(java.awt.Color.WHITE);
+                    btnEstado.setForeground(java.awt.Color.BLACK);
                 }
 
                 // Disable button but keep color using UI override
@@ -151,10 +151,10 @@ public class InicioAlumnoService {
                 // Delete Button
                 JButton btnEliminar = new JButton("Eliminar");
                 btnEliminar.setBackground(Colores.BACKGROUND_RED);
-                btnEliminar.setForeground(java.awt.Color.BLACK);
+                btnEliminar.setForeground(java.awt.Color.WHITE);
                 btnEliminar.addActionListener(e -> {
                     int confirm = javax.swing.JOptionPane.showConfirmDialog(vista,
-                            "¿Estás seguro de eliminar esta postulación?\nSe eliminará tu CV y el registro.",
+                            "¿Estás seguro de eliminar esta postulación?\nSe eliminará tu CV y el registro en el sistema.",
                             "Confirmar Eliminación",
                             javax.swing.JOptionPane.YES_NO_OPTION);
 
@@ -167,7 +167,8 @@ public class InicioAlumnoService {
 
                             // 2. Delete from DB
                             if (postulacionDAO.eliminarPostulacion(p.getIdAlumno(), p.getIdOferta())) {
-                                javax.swing.JOptionPane.showMessageDialog(vista, "Postulación eliminada correctamente.");
+                                javax.swing.JOptionPane.showMessageDialog(vista,
+                                        "Postulación eliminada correctamente.");
                                 InicioAlumnoService.cargarMisPostulaciones(vista); // Recargar cache
                                 InicioAlumnoService.cargarTodasLasOfertas(vista); // Refresh Main offers too
                             } else {
@@ -200,7 +201,7 @@ public class InicioAlumnoService {
         vista.misPostulacionesScrollPane.revalidate();
         vista.misPostulacionesScrollPane.repaint();
     }
-    
+
     public static void actualizarPanelOfertas(List<Oferta> ofertasParaMostrar, InicioAlumno vista) {
         if (vista.panelMisOfertas == null)
             return; // Safety check
@@ -399,7 +400,6 @@ public class InicioAlumnoService {
         cargarMisContratos(vista);
     }
 
-    // Helper method called from constructor to initial load
     public static void agregarPanelPostulaciones(InicioAlumno vista) {
         cargarMisPostulaciones(vista);
     }
