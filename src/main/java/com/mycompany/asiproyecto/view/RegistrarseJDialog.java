@@ -4,7 +4,10 @@ import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 
 import com.mycompany.asiproyecto.controller.RegistrarseController;
+import com.mycompany.asiproyecto.model.Profesor;
+import com.mycompany.asiproyecto.service.RegistrarseService;
 import java.time.LocalDate;
+import java.util.List;
 import javax.swing.JTextField;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.AbstractDocument;
@@ -19,6 +22,8 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
     private RegistrarseController rc;
     //DatePicker para fecha de nacimiento de alumno
     public DatePicker datePickerA;
+    //Cache de profesores registrados para seleccionar docente a cargo al registrar alumno.
+    public List<Profesor> todosLosProfesores;
     
     public RegistrarseJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -30,12 +35,14 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
         restriccionNumeros(dniTextFieldA, 8);
         restriccionLetras(nombresTextFieldA);
         restriccionLetras(apellidoTextFieldA);
-        restriccionLetras(docenteCargoTextFieldA);
         restriccionNumeros(codigoTextFieldA, 8);
         
         restriccionLetras(nombresTextFieldP);
         restriccionLetras(apellidoTextFieldP);
         restriccionNumeros(dniTextFieldP, 8);
+        
+        RegistrarseService.obtenerTodosLosProfesores(this);
+        RegistrarseService.agregarProfesoresAComboBox(this);
     }
 
     private void agregarDatePickerAlumnoForm() {
@@ -123,12 +130,12 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
         jLabel21 = new javax.swing.JLabel();
         cursoTextFieldA = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        docenteCargoTextFieldA = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         contraPasswordFieldA1 = new javax.swing.JPasswordField();
         contraPasswordFieldA2 = new javax.swing.JPasswordField();
         msgRegistrarseA = new javax.swing.JLabel();
         datePickerPlaceholderA = new javax.swing.JTextField();
+        docenteComboBoxA = new javax.swing.JComboBox<>();
         empresaPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         nombreEmpresaTextFieldE = new javax.swing.JTextField();
@@ -300,11 +307,11 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
                                     .addComponent(jLabel7)
                                     .addComponent(generoComboBoxA, 0, 130, Short.MAX_VALUE)
                                     .addComponent(jLabel22)
-                                    .addComponent(docenteCargoTextFieldA)))))
+                                    .addComponent(docenteComboBoxA, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(estudiantePanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(msgRegistrarseA)))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 52, Short.MAX_VALUE))
         );
         estudiantePanelLayout.setVerticalGroup(
             estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,7 +347,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
                 .addGroup(estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(carreraComboBoxA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cursoTextFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(docenteCargoTextFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(docenteComboBoxA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(estudiantePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -361,7 +368,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
                 .addComponent(botonEstudianteSiguente)
                 .addGap(30, 30, 30)
                 .addComponent(msgRegistrarseA)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         cardHolderPanel.add(estudiantePanel, "estudianteCard");
@@ -729,7 +736,7 @@ public class RegistrarseJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField datePickerPlaceholderA;
     public javax.swing.JTextField dniTextFieldA;
     public javax.swing.JTextField dniTextFieldP;
-    public javax.swing.JTextField docenteCargoTextFieldA;
+    public javax.swing.JComboBox<Profesor> docenteComboBoxA;
     private javax.swing.JPanel empresaPanel;
     private javax.swing.JPanel estudiantePanel;
     public javax.swing.JComboBox<String> generoComboBoxA;

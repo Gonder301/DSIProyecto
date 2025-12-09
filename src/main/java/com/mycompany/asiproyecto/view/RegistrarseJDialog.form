@@ -222,7 +222,7 @@
                                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="generoComboBoxA" alignment="0" pref="130" max="32767" attributes="0"/>
                                           <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                          <Component id="docenteCargoTextFieldA" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="docenteComboBoxA" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -232,7 +232,7 @@
                               <Component id="msgRegistrarseA" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -278,7 +278,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="carreraComboBoxA" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cursoTextFieldA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="docenteCargoTextFieldA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="docenteComboBoxA" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -302,7 +302,7 @@
                       <Component id="botonEstudianteSiguente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="msgRegistrarseA" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -440,11 +440,6 @@
                 <Property name="text" type="java.lang.String" value="Docente a cargo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="docenteCargoTextFieldA">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-              </AuxValues>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel31">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Fecha de nacimiento"/>
@@ -471,6 +466,17 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="datePickerPlaceholderA">
+            </Component>
+            <Component class="javax.swing.JComboBox" name="docenteComboBoxA">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Profesor&gt;"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

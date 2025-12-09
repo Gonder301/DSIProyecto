@@ -108,8 +108,8 @@ public class InicioAlumnoController {
                 vista.lblFileName.setText("Subiendo archivo...");
                 
                 Contrato c = new Contrato();
-                c.setIdAlumno(vista.contratoBase.getIdAlumno());
-                c.setIdOferta(vista.contratoBase.getIdOferta());
+                c.setIdAlumno(vista.contrato.getIdAlumno());
+                c.setIdOferta(vista.contrato.getIdOferta());
                 c.setFechaInicio(vista.datePickerInicio.getDate());
                 c.setFechaFin(vista.datePickerFin.getDate());
                 c.setEstadoContrato("Pendiente");
@@ -128,7 +128,7 @@ public class InicioAlumnoController {
                 
                 if (contratoDAO.registrar(c)) {
                     javax.swing.JOptionPane.showMessageDialog(vista, "Contrato enviado correctamente.");
-                    vista.lblFileName.setText("Contrato enviado.");
+                    InicioAlumnoService.actualizarDialogSegunExistenciaContrato(vista);
                 } else {
                     throw new Exception("Error al registrar contrato en base de datos.");
                 }

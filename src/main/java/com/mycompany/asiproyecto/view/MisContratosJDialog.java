@@ -15,8 +15,10 @@ public class MisContratosJDialog extends javax.swing.JDialog {
     
     //Controller
     private InicioAlumnoController iac;
-    public Contrato contratoBase;
-    public String nombreDocente;
+    public Contrato contrato;
+    public int idAlumno;
+    public int idOferta;
+    public String nombreProfesor;
     public DatePicker datePickerInicio;
     public DatePicker datePickerFin;
     public File[] selectedFile;
@@ -27,7 +29,7 @@ public class MisContratosJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
     }
 
-    public MisContratosJDialog(java.awt.Frame parent, boolean modal, int idAlumno, int idOferta) {
+    public MisContratosJDialog(java.awt.Frame parent, boolean modal, int idAlumno, int idOferta, String nombreProfesor) {
         super(parent, modal);
         initComponents();
         getContentPane().setBackground(Colores.BUTTON_YELLOW);
@@ -35,10 +37,10 @@ public class MisContratosJDialog extends javax.swing.JDialog {
         InicioAlumnoService.agregarDatePickers(this);
         selectedFile = new File[]{ null };
         iac = new InicioAlumnoController();
-        contratoBase = new Contrato();
-        contratoBase.setIdAlumno(idAlumno);
-        contratoBase.setIdOferta(idOferta);
-        
+        this.idAlumno = idAlumno;
+        this.idOferta = idOferta;
+        this.nombreProfesor = nombreProfesor;
+        labelNombreDocente.setText(nombreProfesor);
         InicioAlumnoService.actualizarDialogSegunExistenciaContrato(this);
     }
 

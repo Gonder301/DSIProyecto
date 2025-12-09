@@ -3,6 +3,8 @@ package com.mycompany.asiproyecto.dao;
 import com.mycompany.asiproyecto.db.ConnectionPool;
 import com.mycompany.asiproyecto.model.Profesor;
 import com.mycompany.asiproyecto.service.PasswordService;
+import java.util.List;
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,13 +12,66 @@ import java.sql.SQLException;
 
 public class ProfesorDAO {
 
+    public List<Profesor> obtenerTodosLosProfesores() {
+
+        List<Profesor> lista = new ArrayList<>();
+        String sql = "SELECT idprofesor, nombresprofesor, apellidosprofesor, "
+                + "dni, codigocurso, nombrecurso, carrera, correoinstitucional "
+                + "FROM Profesor";
+
+        try (Connection conn = ConnectionPool.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                Profesor p = new Profesor();
+
+                p.setIdProfesor(rs.getInt("idprofesor"));
+                p.setNombresProfesor(rs.getString("nombresprofesor"));
+                p.setApellidosProfesor(rs.getString("apellidosprofesor"));
+                p.setDni(rs.getString("dni"));
+                p.setCodigoCurso(rs.getString("codigocurso"));
+                p.setNombreCurso(rs.getString("nombrecurso"));
+                p.setCarrera(rs.getString("carrera"));
+                p.setCorreoInstitucional(rs.getString("correoinstitucional"));
+                
+                lista.add(p);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener profesores: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return lista;
+    }
+    
+    public String obetenerNombreCompleto(int idProfesor) {
+        String nombreCompleto = null;
+        String sql = "SELECT nombresprofesor, apellidosprofesor "
+                + "FROM Profesor WHERE idprofesor = ?";
+        
+        try (Connection conn = ConnectionPool.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setInt(1, idProfesor);
+            
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                nombreCompleto = rs.getString("apellidosprofesor") + ", " + rs.getString("nombresprofesor");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener nombre completo de profesor por id: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return nombreCompleto;
+    }
+    
     public Profesor obtenerProfesor(String correoInstitucional, char[] contrasena) {
         Profesor prof = null;
 
         String sql = "SELECT * FROM Profesor WHERE correoInstitucional = ?";
 
         try (Connection conn = ConnectionPool.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, correoInstitucional);
 

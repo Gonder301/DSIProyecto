@@ -40,7 +40,7 @@ public class AlumnoDAO {
                         a.setCodigo(rs.getString("codigo"));
                         a.setCarrera(rs.getString("carrera"));
                         a.setCurso(rs.getString("curso"));
-                        a.setDocenteACargo(rs.getString("docenteACargo"));
+                        a.setIdProfesorACargo(rs.getInt("id_profesor_a_cargo"));
                         a.setCorreoElectronico(rs.getString("correoElectronico"));
                     }
                     else {
@@ -63,7 +63,7 @@ public class AlumnoDAO {
         boolean registrado = false;
     
         String sql = "INSERT INTO Alumno (nombresAlumno, apellidosAlumno, dni, genero, " +
-                    "fechaNacimiento, codigo, carrera, curso, docenteACargo, " +
+                    "fechaNacimiento, codigo, carrera, curso, id_profesor_a_cargo, " +
                     "correoElectronico, contrasena) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -86,7 +86,7 @@ public class AlumnoDAO {
             pstmt.setString(6, a.getCodigo());
             pstmt.setString(7, a.getCarrera());
             pstmt.setString(8, a.getCurso());
-            pstmt.setString(9, a.getDocenteACargo());
+            pstmt.setInt(9, a.getIdProfesorACargo());
             pstmt.setString(10, a.getCorreoElectronico());
             pstmt.setString(11, hashContrasena);
 

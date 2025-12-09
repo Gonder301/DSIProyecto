@@ -12,7 +12,7 @@ public class Alumno {
     private String codigo;
     private String carrera;
     private String curso;
-    private String docenteACargo;
+    private int id_profesor_a_cargo;
     private String correoElectronico;
     
     public Alumno() {
@@ -20,7 +20,7 @@ public class Alumno {
     
     public Alumno(int idAlumno, String nombresAlumno, String apellidosAlumno, String dni, 
                   String genero, LocalDate fechaNacimiento, String codigo, String carrera, 
-                  String curso, String docenteACargo, String correoElectronico) {
+                  String curso, int id_profesor_a_cargo, String correoElectronico) {
         this.idAlumno = idAlumno;
         this.nombresAlumno = nombresAlumno;
         this.apellidosAlumno = apellidosAlumno;
@@ -30,7 +30,7 @@ public class Alumno {
         this.codigo = codigo;
         this.carrera = carrera;
         this.curso = curso;
-        this.docenteACargo = docenteACargo;
+        this.id_profesor_a_cargo = id_profesor_a_cargo;
         this.correoElectronico = correoElectronico;
     }
     
@@ -108,12 +108,12 @@ public class Alumno {
         this.curso = curso;
     }
 
-    public String getDocenteACargo() {
-        return docenteACargo;
+    public int getIdProfesorACargo() {
+        return id_profesor_a_cargo;
     }
 
-    public void setDocenteACargo(String docenteACargo) {
-        this.docenteACargo = docenteACargo;
+    public void setIdProfesorACargo(int id_profesor_a_cargo) {
+        this.id_profesor_a_cargo = id_profesor_a_cargo;
     }
 
     public String getCorreoElectronico() {

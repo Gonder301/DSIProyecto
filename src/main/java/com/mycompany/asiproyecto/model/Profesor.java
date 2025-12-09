@@ -91,4 +91,10 @@ public class Profesor {
     public void setCorreoInstitucional(String correoInstitucional) {
         this.correoInstitucional = correoInstitucional;
     }
+    
+    // Se obtiene el nombre completo cuando se hace un cast a String a la clase.
+    @Override
+    public String toString() {
+        return (this.apellidosProfesor + ", " + this.nombresProfesor); 
+    }
 }

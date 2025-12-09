@@ -3,6 +3,7 @@ package com.mycompany.asiproyecto.service;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.mycompany.asiproyecto.Colores;
+import com.mycompany.asiproyecto.dao.ProfesorDAO;
 import com.mycompany.asiproyecto.dao.OfertaDAO;
 import com.mycompany.asiproyecto.dao.PostulacionDAO;
 import com.mycompany.asiproyecto.dao.ContratoDAO;
@@ -66,7 +67,7 @@ public class InicioAlumnoService {
                     btnAdjuntar.setFocusPainted(false);
                     btnAdjuntar.addActionListener(e -> {
                         MisContratosJDialog dialog = new MisContratosJDialog(vista, true, p.getIdAlumno(),
-                                p.getIdOferta());
+                                p.getIdOferta(), vista.labelProfesorAsignado.getText());
                         dialog.setVisible(true);
                     });
 
@@ -386,7 +387,17 @@ public class InicioAlumnoService {
         vista.labelCodigo.setText(vista.alumno.getCodigo());
         vista.labelCurso.setText(vista.alumno.getCurso());
         vista.labelEP.setText(vista.alumno.getCarrera());
-        vista.labelProfesorAsignado.setText(vista.alumno.getDocenteACargo());
+        //Alumno debería tener un campo que sea nombreProfesorAdignado
+        //que almacene eso mismo, pero tiene idProfesor.
+        //Se está dejando la lógica así para no tener que hacer una doble
+        //consulta al obtener Alumno(s) de la base de datos ya que
+        //se tendría que hacer la misma consulta que se está haciendo
+        //abajo para poder llenar el campo nombreProfesorAdignado.
+        //El nombre del profesor asignado será pasado por parámetro a
+        //MisContratosJDialog, obtenido del label labelProfesorAsignado.
+        ProfesorDAO pdao = new ProfesorDAO();
+        vista.labelProfesorAsignado.setText(pdao.obetenerNombreCompleto(vista.alumno.getIdProfesorACargo()));
+        
         // Personal
         vista.labelNombres.setText(vista.alumno.getNombresAlumno());
         vista.labelApellidos.setText(vista.alumno.getApellidosAlumno());
@@ -407,21 +418,46 @@ public class InicioAlumnoService {
     public static Contrato buscarContrato (MisContratosJDialog vista) {
         ContratoDAO contratoDAO = new ContratoDAO();
         Contrato contrato = null;
-        contrato = contratoDAO.obtenerPorIdAlumnoIdOferta(vista.contratoBase.getIdAlumno(), vista.contratoBase.getIdOferta());
+        contrato = contratoDAO.obtenerPorIdAlumnoIdOferta(vista.idAlumno, vista.idOferta);
         return contrato;
     }
     
-    //inicializar en lugar de actualizar?
     public static void actualizarDialogSegunExistenciaContrato (MisContratosJDialog vista) {
-        Contrato c = buscarContrato(vista);
-        if (c != null) { //El contrato ya se encuentra registrado en la base de datos
-            vista.contratoBase = c;
+        vista.contrato = buscarContrato(vista);
+        if (vista.contrato != null) { //El contrato ya se encuentra registrado en la BD.
+            vista.datePickerInicio.setDate(vista.contrato.getFechaInicio());
+            vista.datePickerInicio.setEnabled(false);
+            vista.datePickerFin.setDate(vista.contrato.getFechaFin());
+            vista.datePickerFin.setEnabled(false);
             vista.btnSelectFile.setEnabled(false);
             vista.btnEnviar.setEnabled(false);
-            vista.labelEstado.setText(vista.contratoBase.getEstadoContrato());
+            vista.btnAnular.setEnabled(true);
+            
+            vista.labelEstado.setText(vista.contrato.getEstadoContrato());
+            switch(vista.labelEstado.getText()) {
+                case "Pendiente":
+                    vista.labelEstado.setForeground(Colores.BUTTON_YELLOW);
+                    break;
+                case "Aceptado":
+                    vista.labelEstado.setForeground(Colores.GREEN_ACEPTADO);
+                    break;
+                case "Rechazado":
+                    vista.labelEstado.setForeground(Colores.BACKGROUND_RED);
+                    break;
+            }
         }
-        else {
+        else {//El contrato no está registrado en la BD.
+            vista.datePickerInicio.setDate(LocalDate.now());
+            vista.datePickerInicio.setEnabled(true);
+            vista.datePickerFin.setDate(LocalDate.now());
+            vista.datePickerFin.setEnabled(true);
+            vista.btnSelectFile.setEnabled(true);
+            //se activa cuando se añade el archivo
+            vista.btnEnviar.setEnabled(false);
+            
             vista.btnAnular.setEnabled(false);
+            
+            vista.labelEstado.setText("No registrado");
         }
     }
     
@@ -432,12 +468,22 @@ public class InicioAlumnoService {
     public static void agregarDatePickers (MisContratosJDialog vista) {
         DatePickerSettings dateSettings1 = new DatePickerSettings();
         dateSettings1.setFormatForDatesCommonEra("dd-MM-yyyy");
+        dateSettings1.setAllowKeyboardEditing(false);
+        vista.datePickerInicio = new DatePicker(dateSettings1);
+        
         DatePickerSettings dateSettings2 = new DatePickerSettings();
         dateSettings2.setFormatForDatesCommonEra("dd-MM-yyyy");
-        vista.datePickerInicio = new DatePicker(dateSettings1);
+        dateSettings2.setAllowKeyboardEditing(false);
         vista.datePickerFin = new DatePicker(dateSettings2);
+        
+        vista.datePickerInicio.getComponentDateTextField().setEditable(false);
+        vista.datePickerInicio.getComponentDateTextField().setFocusable(false);
         vista.datePickerInicio.setDate(LocalDate.now());
+        
+        vista.datePickerFin.getComponentDateTextField().setEditable(false);
+        vista.datePickerFin.getComponentDateTextField().setFocusable(false);
         vista.datePickerFin.setDate(LocalDate.now());
+        
         java.awt.Container contentPane = vista.getContentPane();
         javax.swing.GroupLayout layout = (javax.swing.GroupLayout) contentPane.getLayout();
         layout.replace(vista.datePickerPlaceholder1, vista.datePickerInicio);

@@ -1,6 +1,7 @@
 package com.mycompany.asiproyecto.service;
 
 import com.mycompany.asiproyecto.Colores;
+import com.mycompany.asiproyecto.dao.ProfesorDAO;
 import com.mycompany.asiproyecto.model.Alumno;
 import com.mycompany.asiproyecto.model.EmpleadoEmpresa;
 import com.mycompany.asiproyecto.model.Profesor;
@@ -8,6 +9,18 @@ import com.mycompany.asiproyecto.view.RegistrarseJDialog;
 import javax.swing.border.LineBorder;
 
 public class RegistrarseService {
+    public static void obtenerTodosLosProfesores (RegistrarseJDialog vista) {
+        ProfesorDAO profesorDAO = new ProfesorDAO();
+        vista.todosLosProfesores = profesorDAO.obtenerTodosLosProfesores();
+    }
+    
+    public static void agregarProfesoresAComboBox (RegistrarseJDialog vista) {
+        vista.docenteComboBoxA.removeAllItems();
+        for (Profesor p : vista.todosLosProfesores) {
+            vista.docenteComboBoxA.addItem(p);
+        }
+    }
+    
     public static Alumno obtenerAlumnoDeForm(RegistrarseJDialog vista) {
         Alumno a = new Alumno();
         a.setNombresAlumno(vista.nombresTextFieldA.getText());
@@ -18,7 +31,7 @@ public class RegistrarseService {
         a.setCodigo(vista.codigoTextFieldA.getText());
         a.setCarrera((String)vista.carreraComboBoxA.getSelectedItem());
         a.setCurso(vista.cursoTextFieldA.getText());
-        a.setDocenteACargo(vista.docenteCargoTextFieldA.getText());
+        a.setIdProfesorACargo(((Profesor) vista.docenteComboBoxA.getSelectedItem()).getIdProfesor());
         a.setCorreoElectronico(vista.correoTextFieldA.getText());
         return a;
     }
@@ -81,14 +94,6 @@ public class RegistrarseService {
         else {
             vista.cursoTextFieldA.setBorder(lineBorderDef);
         }        
-        
-        if (vista.docenteCargoTextFieldA.getText().isEmpty()) {
-            vista.docenteCargoTextFieldA.setBorder(lineBorderErr);
-            camposVacios += 1;
-        }
-        else {
-            vista.docenteCargoTextFieldA.setBorder(lineBorderDef);
-        }
         
         if (vista.codigoTextFieldA.getText().isEmpty()) {
             vista.codigoTextFieldA.setBorder(lineBorderErr);
