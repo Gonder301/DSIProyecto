@@ -10,6 +10,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AlumnoDAO {
+    
+    public boolean esCorreoRegistrado(String correoElectronico) {
+        boolean existe = false;
+        
+        // Usamos "SELECT 1" o una columna ligera (id) por eficiencia, 
+        // ya que no necesitamos recuperar todos los datos del alumno.
+        String sql = "SELECT idAlumno FROM Alumno WHERE correoElectronico = ?";
+
+        try (Connection conn = ConnectionPool.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, correoElectronico);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                // Si rs.next() es true, significa que la consulta devolvió al menos una fila
+                if (rs.next()) {
+                    existe = true;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al verificar existencia del correo: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return existe;
+    }
+    
     public Alumno obtenerAlumno(String correoElectronico, char[] contrasena) {
         Alumno a = null;
         
@@ -57,6 +85,33 @@ public class AlumnoDAO {
         }
         
         return a;
+    }
+    
+    public boolean cambiarContrasena(int idAlumno, char[] nuevaContrasena) {
+        boolean actualizado = false;
+        
+        String hashContrasena = PasswordService.hash(nuevaContrasena);
+        
+        String sql = "UPDATE Alumno SET contrasena = ? WHERE idAlumno = ?";
+
+        try (Connection conn = ConnectionPool.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, hashContrasena);
+            pstmt.setInt(2, idAlumno);
+
+            int filasAfectadas = pstmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                actualizado = true;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al cambiar contraseña de Alumno: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return actualizado;
     }
     
     public boolean registrarAlumno(Alumno a, char[] contrasena) {

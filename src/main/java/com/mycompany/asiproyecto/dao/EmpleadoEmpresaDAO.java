@@ -10,6 +10,58 @@ import java.sql.SQLException;
 
 public class EmpleadoEmpresaDAO {
 
+    public boolean cambiarContrasena(int idEmpleadoEmpresa, char[] nuevaContrasena) {
+        boolean actualizado = false;
+        
+        String hashContrasena = PasswordService.hash(nuevaContrasena);
+        
+        String sql = "UPDATE EmpleadoEmpresa SET contrasena = ? WHERE idempleado = ?";
+
+        try (Connection conn = ConnectionPool.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, hashContrasena);
+            pstmt.setInt(2, idEmpleadoEmpresa);
+
+            int filasAfectadas = pstmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                actualizado = true;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al cambiar contraseña de EmpleadoEmpresa: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return actualizado;
+    }
+    
+    public boolean esCorreoRegistrado(String correoCorporativo) {
+        boolean existe = false;
+        
+        // Consultamos solo el ID para optimizar el rendimiento
+        String sql = "SELECT idEmpleado FROM EmpleadoEmpresa WHERE correocorporativo = ?";
+
+        try (Connection conn = ConnectionPool.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, correoCorporativo);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    existe = true;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al verificar existencia del correo corporativo: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return existe;
+    }
+    
     public EmpleadoEmpresa obtenerEmpleadoEmpresa(String correoCorporativo, char[] contrasena) {
         EmpleadoEmpresa emp = null;
         

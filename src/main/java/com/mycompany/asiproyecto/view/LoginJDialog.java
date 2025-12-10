@@ -54,10 +54,10 @@ public class LoginJDialog extends javax.swing.JDialog {
         correoTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         contraPasswordField = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
+        labelOlvistasteContra = new javax.swing.JLabel();
         iniciarSesionButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        labelRegistrarse = new javax.swing.JLabel();
         msgError = new javax.swing.JLabel();
         iconLabel = new javax.swing.JLabel();
 
@@ -109,8 +109,13 @@ public class LoginJDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel6.setText("¿Olvidaste tu contraseña?");
+        labelOlvistasteContra.setForeground(new java.awt.Color(0, 51, 255));
+        labelOlvistasteContra.setText("¿Olvidaste tu contraseña?");
+        labelOlvistasteContra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelOlvistasteContraMouseClicked(evt);
+            }
+        });
 
         iniciarSesionButton.setBackground(new java.awt.Color(0, 51, 255));
         iniciarSesionButton.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -124,8 +129,13 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         jLabel7.setText("¿No tienes una cuenta?");
 
-        jLabel8.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel8.setText("Regístrate aquí");
+        labelRegistrarse.setForeground(new java.awt.Color(0, 51, 255));
+        labelRegistrarse.setText("Regístrate aquí");
+        labelRegistrarse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelRegistrarseMouseClicked(evt);
+            }
+        });
 
         msgError.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -146,7 +156,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6))
+                                .addComponent(labelOlvistasteContra))
                             .addComponent(contraPasswordField)
                             .addComponent(correoTextField)
                             .addComponent(iniciarSesionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -154,7 +164,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                         .addGap(55, 55, 55)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8))
+                        .addComponent(labelRegistrarse))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(msgError)))
@@ -178,7 +188,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(labelOlvistasteContra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contraPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,7 +196,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(labelRegistrarse))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(msgError)
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -264,6 +274,14 @@ public class LoginJDialog extends javax.swing.JDialog {
         lc.procesarValidacion(this);
     }//GEN-LAST:event_iniciarSesionButtonActionPerformed
 
+    private void labelRegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegistrarseMouseClicked
+        lc.abrirVentanaRegistrarse(this);
+    }//GEN-LAST:event_labelRegistrarseMouseClicked
+
+    private void labelOlvistasteContraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOlvistasteContraMouseClicked
+        lc.procesarCambioDePassword(this);
+    }//GEN-LAST:event_labelOlvistasteContraMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -311,10 +329,10 @@ public class LoginJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JLabel labelOlvistasteContra;
+    public javax.swing.JLabel labelRegistrarse;
     public javax.swing.JLabel msgError;
     public javax.swing.JComboBox<String> tipoUsuarioComboBox;
     // End of variables declaration//GEN-END:variables

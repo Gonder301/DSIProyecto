@@ -12,6 +12,58 @@ import java.sql.SQLException;
 
 public class ProfesorDAO {
 
+    public boolean cambiarContrasena(int idProfesor, char[] nuevaContrasena) {
+        boolean actualizado = false;
+        
+        String hashContrasena = PasswordService.hash(nuevaContrasena);
+        
+        String sql = "UPDATE Profesor SET contrasena = ? WHERE idprofesor = ?";
+
+        try (Connection conn = ConnectionPool.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, hashContrasena);
+            pstmt.setInt(2, idProfesor);
+
+            int filasAfectadas = pstmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                actualizado = true;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al cambiar contraseña de Profesor: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return actualizado;
+    }
+    
+    public boolean esCorreoRegistrado(String correoInstitucional) {
+        boolean existe = false;
+        
+        // Seleccionamos solo el ID para que la consulta sea rápida
+        String sql = "SELECT idprofesor FROM Profesor WHERE correoinstitucional = ?";
+
+        try (Connection conn = ConnectionPool.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, correoInstitucional);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    existe = true;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al verificar existencia del correo del profesor: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return existe;
+    }
+    
     public List<Profesor> obtenerTodosLosProfesores() {
 
         List<Profesor> lista = new ArrayList<>();
@@ -68,7 +120,7 @@ public class ProfesorDAO {
     public Profesor obtenerProfesor(String correoInstitucional, char[] contrasena) {
         Profesor prof = null;
 
-        String sql = "SELECT * FROM Profesor WHERE correoInstitucional = ?";
+        String sql = "SELECT * FROM Profesor WHERE correoinstitucional = ?";
 
         try (Connection conn = ConnectionPool.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -110,7 +162,7 @@ public class ProfesorDAO {
         boolean registrado = false;
 
         String sql = "INSERT INTO Profesor (nombresProfesor, apellidosProfesor, dni, " +
-                     "codigoCurso, nombreCurso, carrera, correoInstitucional, contrasena) " +
+                     "codigoCurso, nombreCurso, carrera, correoinstitucional, contrasena) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionPool.getConnection();
