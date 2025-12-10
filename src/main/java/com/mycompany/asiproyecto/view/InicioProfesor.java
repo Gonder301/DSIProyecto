@@ -2,8 +2,10 @@ package com.mycompany.asiproyecto.view;
 
 import com.mycompany.asiproyecto.Colores;
 import com.mycompany.asiproyecto.controller.InicioProfesorController;
+import com.mycompany.asiproyecto.model.AlumnoContrato;
 import com.mycompany.asiproyecto.model.Profesor;
 import com.mycompany.asiproyecto.service.InicioProfesorService;
+import java.util.List;
 
 public class InicioProfesor extends javax.swing.JFrame {
     
@@ -13,6 +15,7 @@ public class InicioProfesor extends javax.swing.JFrame {
     private InicioProfesorController ipc;
     
     public Profesor profesor;
+    public List<AlumnoContrato> todosLosAlumnoContrato;
     
     public InicioProfesor() {
         initComponents();
@@ -22,6 +25,8 @@ public class InicioProfesor extends javax.swing.JFrame {
         nombreLabel.setText(profesor.getNombresProfesor());
         setLocationRelativeTo(null);
         InicioProfesorService.llenarMiInfo(this);
+        InicioProfesorService.cargarContratos(this);
+        InicioProfesorService.actualizarPanelContratos(todosLosAlumnoContrato, this);
     }
 
     public InicioProfesor(Profesor p) {
@@ -31,6 +36,8 @@ public class InicioProfesor extends javax.swing.JFrame {
         nombreLabel.setText(profesor.getNombresProfesor());
         setLocationRelativeTo(null);
         InicioProfesorService.llenarMiInfo(this);
+        InicioProfesorService.cargarContratos(this);
+        InicioProfesorService.actualizarPanelContratos(todosLosAlumnoContrato, this);
     }
     
     /**
@@ -66,8 +73,9 @@ public class InicioProfesor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         filtroRevisarContratoPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        estadoContratoComboBox = new javax.swing.JComboBox<>();
         botonFiltroContratos = new javax.swing.JButton();
+        scrollPanelContratos = new javax.swing.JScrollPane();
         evaluarInformesPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         filtroEvaluarInformesPanel = new javax.swing.JPanel();
@@ -244,7 +252,7 @@ public class InicioProfesor extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Estado");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Aceptado", "Pendiente", "Rechazado" }));
+        estadoContratoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Aceptado", "Pendiente", "Rechazado" }));
 
         botonFiltroContratos.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         botonFiltroContratos.setText("BUSCAR");
@@ -263,7 +271,7 @@ public class InicioProfesor extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(filtroRevisarContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estadoContratoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(botonFiltroContratos)
                 .addGap(24, 24, 24))
@@ -276,7 +284,7 @@ public class InicioProfesor extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(estadoContratoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(filtroRevisarContratoPanelLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(botonFiltroContratos)))
@@ -294,8 +302,11 @@ public class InicioProfesor extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(revisarContratoPanelLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(filtroRevisarContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(336, Short.MAX_VALUE))
+                        .addComponent(filtroRevisarContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(revisarContratoPanelLayout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(scrollPanelContratos, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         revisarContratoPanelLayout.setVerticalGroup(
             revisarContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +315,9 @@ public class InicioProfesor extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(filtroRevisarContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(435, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(scrollPanelContratos, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         cardHolderPanel.add(revisarContratoPanel, "revisarContratoCard");
@@ -550,7 +563,7 @@ public class InicioProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEvaluarInformesActionPerformed
 
     private void botonFiltroContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltroContratosActionPerformed
-        // TODO add your handling code here:
+        ipc.filtrarContratos(this);
     }//GEN-LAST:event_botonFiltroContratosActionPerformed
 
     private void botonFiltroInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltroInformesActionPerformed
@@ -589,11 +602,11 @@ public class InicioProfesor extends javax.swing.JFrame {
     public javax.swing.JButton botonMiInformacion;
     public javax.swing.JButton botonRevisarContrato;
     public javax.swing.JPanel cardHolderPanel;
+    public javax.swing.JComboBox<String> estadoContratoComboBox;
     public javax.swing.JPanel evaluarInformesPanel;
     private javax.swing.JPanel filtroEvaluarInformesPanel;
     private javax.swing.JPanel filtroRevisarContratoPanel;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -624,5 +637,6 @@ public class InicioProfesor extends javax.swing.JFrame {
     public javax.swing.JPanel miInformacionPanel;
     private javax.swing.JLabel nombreLabel;
     public javax.swing.JPanel revisarContratoPanel;
+    public javax.swing.JScrollPane scrollPanelContratos;
     // End of variables declaration//GEN-END:variables
 }
