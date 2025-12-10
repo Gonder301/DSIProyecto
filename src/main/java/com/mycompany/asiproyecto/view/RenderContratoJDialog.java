@@ -1,39 +1,31 @@
 package com.mycompany.asiproyecto.view;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.rendering.PDFRenderer;
-
 import com.mycompany.asiproyecto.model.AlumnoContrato;
-import com.mycompany.asiproyecto.service.InicioProfesorService;
 import com.mycompany.asiproyecto.service.PdfRendererService;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class RevisarContratoJDialog extends javax.swing.JDialog {
+public class RenderContratoJDialog extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger
-            .getLogger(RevisarContratoJDialog.class.getName());
+            .getLogger(RenderContratoJDialog.class.getName());
 
-    public AlumnoContrato alumnoContrato;
-
-    public RevisarContratoJDialog(java.awt.Frame parent, boolean modal) {
+    public RenderContratoJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public RevisarContratoJDialog(AlumnoContrato ac, java.awt.Frame parent, boolean modal) {
+    public RenderContratoJDialog(String idDocumento, java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.alumnoContrato = ac;
-        displayPdf(this.alumnoContrato.idDocumento);
+        displayPdf(idDocumento);
     }
 
     public void displayPdf(String driveFileId) {
@@ -52,7 +44,7 @@ public class RevisarContratoJDialog extends javax.swing.JDialog {
             JScrollPane scrollPane = new JScrollPane(pdfContentPanel);
             scrollPane.getVerticalScrollBar().setUnitIncrement(20);
             this.setContentPane(scrollPane);
-            this.setSize(800, 600);
+            this.setSize(900, 700);
             this.setLocationRelativeTo(null);
             this.revalidate();
             this.repaint();
@@ -70,7 +62,7 @@ public class RevisarContratoJDialog extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -78,11 +70,13 @@ public class RevisarContratoJDialog extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 400, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 300, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -116,7 +110,7 @@ public class RevisarContratoJDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                RevisarContratoJDialog dialog = new RevisarContratoJDialog(new javax.swing.JFrame(), true);
+                RenderContratoJDialog dialog = new RenderContratoJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

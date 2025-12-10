@@ -43,13 +43,13 @@ public class ContratoDAO {
         String sql = "SELECT idContrato, idAlumno, idOferta, fechaInicio, fechaFin, "
                 + "estadoContrato, documentoContrato FROM Contrato "
                 + "WHERE idalumno = ? AND idoferta = ?";
-        
+
         try (Connection conn = ConnectionPool.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             pstmt.setInt(1, idAlumno);
             pstmt.setInt(2, idOferta);
-            
+
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     c = new Contrato();
@@ -62,14 +62,14 @@ public class ContratoDAO {
                     c.setDocumentoContrato(rs.getString("documentoContrato"));
                 }
             }
-            
+
         } catch (SQLException e) {
             System.err.println("Error al obtener contrato por idAlumno y idOferta: " + e.getMessage());
             e.printStackTrace();
         }
         return c;
     }
-    
+
     public Contrato obtenerPorId(int id) {
         Contrato c = null;
         String sql = "SELECT idContrato, idAlumno, idOferta, fechaInicio, fechaFin, estadoContrato, documentoContrato FROM Contrato WHERE idContrato = ?";
@@ -97,7 +97,7 @@ public class ContratoDAO {
         }
         return c;
     }
-    
+
     public List<Contrato> obtenerPorAlumno(int idAlumno) {
         List<Contrato> lista = new ArrayList<>();
         String sql = "SELECT idContrato, idAlumno, idOferta, fechaInicio, fechaFin, estadoContrato, documentoContrato FROM Contrato WHERE idAlumno = ?";
@@ -150,6 +150,24 @@ public class ContratoDAO {
         }
     }
 
+    public boolean actualizarEstado(int idContrato, String nuevoEstado) {
+        String sql = "UPDATE Contrato SET estadocontrato= ? WHERE idcontrato = ?";
+
+        try (Connection conn = ConnectionPool.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, nuevoEstado);
+            pstmt.setInt(2, idContrato);
+
+            int rows = pstmt.executeUpdate();
+            return rows > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar contrato: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean actualizar(Contrato c) {
         String sql = "UPDATE Contrato SET idAlumno=?, idOferta=?, fechaInicio=?, fechaFin=?, estadoContrato=?, documentoContrato=? WHERE idContrato=?";
 
@@ -191,7 +209,7 @@ public class ContratoDAO {
             return false;
         }
     }
-    
+
     public boolean eliminar(int idAlumno, int idOferta) {
         String sql = "DELETE FROM Contrato WHERE idalumno = ? AND idoferta = ?";
 
@@ -200,7 +218,7 @@ public class ContratoDAO {
 
             pstmt.setInt(1, idAlumno);
             pstmt.setInt(2, idOferta);
-            
+
             int rows = pstmt.executeUpdate();
             return rows > 0;
 

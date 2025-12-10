@@ -437,11 +437,11 @@
                                       <Component id="filtroRevisarContratoPanel" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                                      <Component id="scrollPanelContratos" min="-2" pref="470" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                                      <Component id="scrollPanelContratos" min="-2" pref="533" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="175" max="32767" attributes="0"/>
+                              <EmptySpace pref="142" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

@@ -306,9 +306,9 @@ public class InicioProfesor extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(filtroRevisarContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(revisarContratoPanelLayout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(scrollPanelContratos, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(175, Short.MAX_VALUE))
+                        .addGap(143, 143, 143)
+                        .addComponent(scrollPanelContratos, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         revisarContratoPanelLayout.setVerticalGroup(
             revisarContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
